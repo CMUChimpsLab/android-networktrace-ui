@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 
 export const API_URL =
- 'http://localhost:8081';
-// 'https://privacy-analytics-api-v2.herokuapp.com';
+// 'http://localhost:8081';
+ 'https://privacy-analytics-api-v2.herokuapp.com';
 
 // tslint:disable:max-line-length
 export const TAXONOMIES = [
