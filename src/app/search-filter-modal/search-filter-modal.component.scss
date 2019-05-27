@@ -1,0 +1,81 @@
+.search-filter-content {
+    .radio-container {
+        width: 100%;
+        margin: 15px 0 5px 0;
+        /deep/ .mat-radio-button:first-of-type {
+            margin-right: 30px;
+        }
+    }
+    .input-container {
+        width: 100%;
+        height: 36px;
+        border: 1px solid #d0d0d0;
+        position: relative;
+        input {
+            line-height: 34px;
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 0 15px;
+            &::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: #909090;
+                font-size: small;
+                font-style: italic;
+                text-align: left;
+            }
+
+            &::-moz-placeholder {
+                /* Firefox 19+ */
+                color: #909090;
+                font-size: small;
+                font-style: italic;
+                text-align: left;
+            }
+
+            &:-ms-input-placeholder {
+                /* IE 10+ */
+                color: #909090;
+                font-size: small;
+                font-style: italic;
+                text-align: left;
+            }
+
+            &:-moz-placeholder {
+                /* Firefox 18- */
+                color: #909090;
+                font-size: small;
+                font-style: italic;
+                text-align: left;
+            }
+        }
+        i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            line-height: 34px;
+            width: 36px;
+            text-align: center;
+            font-size: medium;
+            color: #909090;
+        }
+    }
+    .tabs-container {
+        margin: 0px 0 0 0;
+        label {
+            margin: 0;
+        }
+        .tab-content {
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            padding: 15px 0;
+            .tab-content-item {
+                width: 25%;
+                &.w33 {
+                    width: 33%;
+                }
+            }
+        }
+    }
+}

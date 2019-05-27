@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/scss/bootstrap";
+@import 'variables';
+@import 'shared';
+@import 'home';
+@import 'modal';
+@mixin scrollbars($size, $foreground-color, $background-color) {
+    ::-webkit-scrollbar {
+       width: $size;
+       height: $size;
+   }
+    ::-webkit-scrollbar-thumb {
+       background: $foreground-color;
+   }
+    ::-webkit-scrollbar-track {
+       background: $background-color;
+   } // For Internet Explorer
+   .app-nav {
+       -ms-scrollbar-face-color: $foreground-color;
+       scrollbar-face-color: $foreground-color;
+       -ms-scrollbar-track-color: $background-color;
+       scrollbar-track-color: $background-color;
+   }
+}
+html, body {
+    font-family: 'Raleway', sans-serif;
+    &.overflow-hidden {
+        overflow: hidden;
+    }
+}
+@include scrollbars(0.50em, #e0e0e0, #f0f0f0);
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+    $font-family: "'Raleway', Roboto,'Helvetica Neue',sans-serif"
+);
+
+@include mat-core($custom-typography);
+
+.phone-data-tooltip {
+    background: rgba(50,50,50,.90);
+    text-align: center;
+    font-size: small;
+}

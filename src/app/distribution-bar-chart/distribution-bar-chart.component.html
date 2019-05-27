@@ -1,0 +1,23 @@
+<div class="modal" *ngIf="modalOpened">
+    <div class="overlay" (click)="closeModal()"></div>
+    <div class="container modal-content distribution-modal-content">
+        <div class="content-wrapper">
+            <div class="distribution-content position-relative">
+                <div class="content-toggle">
+                    <div class="content-toggle-control">
+                        <mat-form-field>
+                            <mat-label>Sort By</mat-label>
+                            <mat-select (selectionChange)="onSelectionChnage()" [(value)]="selectedOption">
+                                <mat-option *ngFor="let food of sortOptions" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <highcharts-chart class="highchart" *ngIf="showChart" [Highcharts]="Highcharts"
+                    [options]="chartOptions"></highcharts-chart>
+            </div>
+        </div>
+    </div>
+</div>
