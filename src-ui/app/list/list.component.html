@@ -1,25 +1,44 @@
 <div class="search-container">
     <div class="search-header">
-        <div class="container flex-content noPaddingBottom" [attr.type]="currentTypeDetails">
+        <div class="container flex-content noPaddingBottom" style="padding-bottom: 0;" [attr.type]="currentTypeDetails">
         </div>
     </div>
     <div class="search-content">
-        <div class="container position-relative">
+        <div class="container position-relative" style="padding-top: 0;">
             <div class="results-wrapper pt-0 pb-0">
                 <div class="results-container">
                     <div class="results-container-item">
-                        <div class="results-list-item" *ngFor="let row of apps; let j = index;">
-                            <div class="logo">
-                                <img [attr.src]="row.icon" />
+                        <ng-container *ngFor="let row of apps; let j = index;">
+                            <div class="results-list-item" [routerLink]="['/results/who/' + row.app]" *ngIf="currentTypeDetails === 'app-list'">
+                                <div class="logo">
+                                    <img [attr.src]="row.icon" />
+                                </div>
+                                <div class="name-stuff">
+                                    <label class="name">{{row.title}}</label>
+                                    <label class="package">{{row.app}}</label>
+                                </div>
                             </div>
-                            <div class="name-stuff">
-                                <label class="name">{{row.title}}</label>
-                                <label class="package">{{row.app}}</label>
+                            <div class="results-list-item" [routerLink]="['/results/where/' + row.app]" *ngIf="currentTypeDetails === 'host-list'">
+                                <div class="logo">
+                                    <img [attr.src]="row.icon" />
+                                </div>
+                                <div class="name-stuff">
+                                    <label class="name">{{row.title}}</label>
+                                    <label class="package">{{row.app}}</label>
+                                </div>
                             </div>
-                        </div>
+                        </ng-container>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="search-footer" *ngIf="showPaginator">
+        <div class="container position-relative p-0">
+            <label class="footer-label" *ngIf="false">Total {{totalSize}} {{entityLabel}}</label>
+            <mat-paginator [length]="totalSize" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageEvent($event)">
+            </mat-paginator>
         </div>
     </div>
 </div>

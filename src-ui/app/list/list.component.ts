@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { PageEvent } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-list',
@@ -11,29 +13,56 @@ import { DataService } from '../data.service';
 })
 export class ListComponent implements OnInit {
     currentTypeDetails;
-    apps = new Array(20).fill({
-        id: Math.random() * 10e6,
-        app: 'com.preapsovath.khmersexystar',
-        title: 'Preap Sovath Songs',
-        icon: 'https://lh5.ggpht.com/O1u9rv7RPrAVdvyvD3EFr224k_SdYVq3cQ3CeIYqT1m9Lqm6A_Wz3XHSnSopTWCs7-HD'
-    });
+    apps = [];
     skip = 0;
-    limit = 20;
+    pageSize = 60;
     page = -1;
-    constructor(private dataService: DataService) {}
+    showPaginator = true;
+    totalSize = 16000;
+    pageSizeOptions: number[] = [30, 60, 120, 180];
+    pageEvent: PageEvent | undefined;
+    constructor(
+        private dataService: DataService,
+        private activatedRoute: ActivatedRoute) {}
     ngOnInit() {
-        this.currentTypeDetails = 'app-list';
-        this.fetchApps();
-        // this.fetchHosts();
-    }
-    fetchApps() {
-        this.skip = (++this.page) * this.limit;
-        this.dataService.getApps(this.skip, this.limit).subscribe(data => {
-            console.log(data);
+        this.activatedRoute.params.subscribe((data: any) => {
+            if (data.type === 'apps') {
+                this.currentTypeDetails = 'app-list';
+            } else if (data.type === 'hosts') {
+                this.currentTypeDetails = 'host-list';
+            }
+            this.loadNextPage();
         });
     }
-    fetchHosts() {
-        this.skip = (++this.page) * this.limit;
-        this.dataService.getHosts(this.skip, this.limit).subscribe(data => console.log);
+    loadNextPage(event?: PageEvent) {
+        this.skip = event ? event.pageIndex * (event.pageSize) : 0;
+        this.pageSize = event ? event.pageSize : 60;
+        if (this.currentTypeDetails === 'app-list') {
+            this.dataService.getApps(this.skip, this.pageSize).subscribe((data: Array<any>) => {
+                if (data.length > 0) {
+                    (data as Array<any>).forEach(item => {
+                        item.icon = item.icon ? item.icon : 'assets/playstore.png';
+                    });
+                }
+                this.apps = data;
+            });
+        } else if (this.currentTypeDetails === 'host-list') {
+            this.dataService.getHosts(this.skip, this.pageSize).subscribe((data: Array<any>) => {
+                const result = [];
+                if (data.length > 0) {
+                    (data as Array<any>).forEach(item => {
+                        result.push({
+                            app: item.host,
+                            title: item.who_company ? item.who_company : '',
+                            icon: item.icon ? item.icon :  'assets/worldwide_256.png'
+                        });
+                    });
+                }
+                this.apps = result;
+            });
+        }
+    }
+    onPageEvent(event: PageEvent) {
+        this.loadNextPage(event);
     }
 }

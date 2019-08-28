@@ -8,7 +8,7 @@
         width: 33%;
         justify-content: flex-start;
         align-items: center;
-        padding: 10px;
+        padding: 15px;
         background: transparent;
         transition: all 0.3s linear 0s;
         cursor: pointer;
@@ -22,6 +22,8 @@
             align-items: center;
             width: 48px;
             height: 48px;
+            order: 1;
+            flex: initial;
 
             img {
                 max-width: 36px;
@@ -56,6 +58,13 @@
             display: flex;
             flex-direction: column;
             padding: 0 10px;
+            order: 2;
+            width: calc(100% - 48px);
+            overflow-x: hidden;
         }
     }
+}
+
+/deep/ .mat-paginator-range-label {
+    display: none !important;
 }
