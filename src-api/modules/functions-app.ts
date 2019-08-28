@@ -18,8 +18,8 @@ export async function GetAppDetails(client: any, params: any, callback: Function
         }
     } else {
         let skip = 0, limit = 10;
-        if (!_.isEmpty(params.skip)) { skip = parseInt(params.skip) || 0; }
-        if (!_.isEmpty(params.limit)) { limit = parseInt(params.limit) || 10; }
+        if (_.isFinite(params.skip)) { skip = parseInt(params.skip) || 0; }
+        if (_.isFinite(params.limit)) { limit = parseInt(params.limit) || 10; }
         data = await appsCollection.find({}).skip(skip).limit(limit).toArray();
         CleanupMongoClient(client);
         if (data.length > 0) {
@@ -42,12 +42,12 @@ export async function GetHostDetails(client: any, params: any, callback: Functio
         }
     } else {
         let skip = 0, limit = 10;
-        if (!_.isEmpty(params.skip)) { skip = parseInt(params.skip) || 0; }
-        if (!_.isEmpty(params.limit)) { limit = parseInt(params.limit) || 10; }
+        if (_.isFinite(params.skip)) { skip = parseInt(params.skip) || 0; }
+        if (_.isFinite(params.limit)) { limit = parseInt(params.limit) || 10; }
         const data = await hostsCollection.find({}).skip(skip).limit(limit).toArray();
         CleanupMongoClient(client);
         if (data.length > 0) {
-            callback(data[0]);
+            callback(data);
         } else {
             callback(null);
         }

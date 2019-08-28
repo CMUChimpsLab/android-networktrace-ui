@@ -37,10 +37,10 @@ function GetAppDetails(client, params, callback) {
         }
         else {
             let skip = 0, limit = 10;
-            if (!_.isEmpty(params.skip)) {
+            if (_.isFinite(params.skip)) {
                 skip = parseInt(params.skip) || 0;
             }
-            if (!_.isEmpty(params.limit)) {
+            if (_.isFinite(params.limit)) {
                 limit = parseInt(params.limit) || 10;
             }
             data = yield appsCollection.find({}).skip(skip).limit(limit).toArray();
@@ -70,16 +70,16 @@ function GetHostDetails(client, params, callback) {
         }
         else {
             let skip = 0, limit = 10;
-            if (!_.isEmpty(params.skip)) {
+            if (_.isFinite(params.skip)) {
                 skip = parseInt(params.skip) || 0;
             }
-            if (!_.isEmpty(params.limit)) {
+            if (_.isFinite(params.limit)) {
                 limit = parseInt(params.limit) || 10;
             }
             const data = yield hostsCollection.find({}).skip(skip).limit(limit).toArray();
             client_1.CleanupMongoClient(client);
             if (data.length > 0) {
-                callback(data[0]);
+                callback(data);
             }
             else {
                 callback(null);

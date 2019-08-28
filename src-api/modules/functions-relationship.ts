@@ -9,9 +9,9 @@ import * as _ from 'lodash';
 
 async function GetRelationshipsGivenAppList(collection: any, params: any, appList: string[]) {
     let skip = 0, limit = 0;
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
-    if (!_.isEmpty(params.nolimit)) limit = 100000;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.nolimit)) limit = 100000;
     let AggregateExpressions = [
         {
             "$match": {
@@ -31,9 +31,9 @@ async function GetRelationshipsGivenAppList(collection: any, params: any, appLis
 
 async function GetRelationshipsGivenApp(collection: any, params: any, app: string) {
     let skip = 0, limit = 0;
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
-    if (!_.isEmpty(params.nolimit)) limit = 100000;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.nolimit)) limit = 100000;
     let AggregateExpressions = [
         {
             "$match": {
@@ -52,9 +52,9 @@ async function GetRelationshipsGivenApp(collection: any, params: any, app: strin
 
 async function GetRelationshipsGivenHost(collection: any, params: any, host: string, count = false) {
     let skip = 0, limit = 0;
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
-    if (!_.isEmpty(params.nolimit)) limit = 100000;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.nolimit)) limit = 100000;
     let AggregateExpressions: any[] = [];
     if (!count) {
         AggregateExpressions = [
@@ -107,9 +107,9 @@ async function GetRelationshipsGivenHost(collection: any, params: any, host: str
 
 async function GetRelationshipsGivenAppAndHost(collection: any, params: any, app: string, host: string) {
     let skip = 0, limit = 0;
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
-    if (!_.isEmpty(params.nolimit)) limit = 100000;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.nolimit)) limit = 100000;
     let HostMatchExpression = [
         { "$match": { 'relinfo.host': { '$eq': host } } }
     ];
@@ -133,9 +133,9 @@ async function GetRelationshipsGivenAppAndHost(collection: any, params: any, app
 
 async function GetRelationshipsGivenNothing(client: any, params: any) {
     let skip = 0, limit = 0, categories = [], types = [], purposes = [], hosts = [], apps = [];
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
-    if (!_.isEmpty(params.nolimit)) limit = 100000;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.nolimit)) limit = 100000;
     if (!_.isEmpty(params.categories)) categories = params.categories;
     if (!_.isEmpty(params.types)) types = params.types;
     if (!_.isEmpty(params.purposes)) purposes = params.purposes;

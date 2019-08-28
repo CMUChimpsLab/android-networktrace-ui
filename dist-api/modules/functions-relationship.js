@@ -26,11 +26,11 @@ const _ = __importStar(require("lodash"));
 function GetRelationshipsGivenAppList(collection, params, appList) {
     return __awaiter(this, void 0, void 0, function* () {
         let skip = 0, limit = 0;
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (!_.isEmpty(params.nolimit))
+        if (_.isFinite(params.nolimit))
             limit = 100000;
         let AggregateExpressions = [
             {
@@ -52,11 +52,11 @@ function GetRelationshipsGivenAppList(collection, params, appList) {
 function GetRelationshipsGivenApp(collection, params, app) {
     return __awaiter(this, void 0, void 0, function* () {
         let skip = 0, limit = 0;
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (!_.isEmpty(params.nolimit))
+        if (_.isFinite(params.nolimit))
             limit = 100000;
         let AggregateExpressions = [
             {
@@ -77,11 +77,11 @@ function GetRelationshipsGivenApp(collection, params, app) {
 function GetRelationshipsGivenHost(collection, params, host, count = false) {
     return __awaiter(this, void 0, void 0, function* () {
         let skip = 0, limit = 0;
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (!_.isEmpty(params.nolimit))
+        if (_.isFinite(params.nolimit))
             limit = 100000;
         let AggregateExpressions = [];
         if (!count) {
@@ -137,11 +137,11 @@ function GetRelationshipsGivenHost(collection, params, host, count = false) {
 function GetRelationshipsGivenAppAndHost(collection, params, app, host) {
     return __awaiter(this, void 0, void 0, function* () {
         let skip = 0, limit = 0;
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (!_.isEmpty(params.nolimit))
+        if (_.isFinite(params.nolimit))
             limit = 100000;
         let HostMatchExpression = [
             { "$match": { 'relinfo.host': { '$eq': host } } }
@@ -167,11 +167,11 @@ function GetRelationshipsGivenAppAndHost(collection, params, app, host) {
 function GetRelationshipsGivenNothing(client, params) {
     return __awaiter(this, void 0, void 0, function* () {
         let skip = 0, limit = 0, categories = [], types = [], purposes = [], hosts = [], apps = [];
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (!_.isEmpty(params.nolimit))
+        if (_.isFinite(params.nolimit))
             limit = 100000;
         if (!_.isEmpty(params.categories))
             categories = params.categories;
