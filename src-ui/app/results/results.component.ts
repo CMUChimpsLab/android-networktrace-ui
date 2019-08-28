@@ -36,7 +36,7 @@ export class ResultsComponent implements OnInit {
     length = 100;
     pageSize = 10;
     pageSizeOptions: number[] = [5, 10, 25, 100];
-    pageEvent: PageEvent;
+    pageEvent: PageEvent | undefined;
     columnOptions = [
         { id: 'who', name: 'Who', show: true },
         { id: 'what', name: 'What', show: true },
@@ -46,8 +46,8 @@ export class ResultsComponent implements OnInit {
     activeSorterCol = 'what';
     groupedByColumn = 'Who';
     paramId = null;
-    appDetails = null;
-    hostDetails = null;
+    appDetails: any = null;
+    hostDetails: any = null;
     activeSorterDirection = 'ASC';
     statistics = [];
     showPurposeDistrbution = false;
@@ -57,9 +57,9 @@ export class ResultsComponent implements OnInit {
     limit = 10;
     fetchCall = null;
     useSkipAndLimit = false;
-    fetchCallType: FetchType = null;
-    currentQueryParams = null;
-    queryParamsView = [];
+    fetchCallType: FetchType | any = null;
+    currentQueryParams: any = null;
+    queryParamsView: any[] = [];
     constructor(
         private appService: AppService,
         private dataService: DataService,
@@ -120,8 +120,8 @@ export class ResultsComponent implements OnInit {
         this.queryParamsView = [];
         this.statistics = [];
     }
-    fillParams(queryParams) {
-        const params = {};
+    fillParams(queryParams: any) {
+        const params: any = {};
         const fields = ['hosts', 'categories', 'types', 'purposes'];
         fields.forEach(field => {
             if (queryParams[field]) {
@@ -168,7 +168,7 @@ export class ResultsComponent implements OnInit {
         }
         this.loadNextPage(null);
     }
-    onColumnClicked(column) {
+    onColumnClicked(column: any) {
         if (column.id === this.activeSorterCol) {
             this.activeSorterDirection = this.activeSorterDirection === 'ASC' ? 'DESC' : 'ASC';
         } else {
@@ -189,8 +189,8 @@ export class ResultsComponent implements OnInit {
         if (!this.firstCallMade) {
             this.firstCallMade = true;
         } else {
-            this.skip = event.pageIndex * (event.pageSize);
-            this.limit = event.pageSize;
+            this.skip = event ? event.pageIndex * (event.pageSize) : 0;
+            this.limit = event ? event.pageSize : 10;
         }
         this.appService.showLoader();
         switch (this.fetchCallType) {
@@ -230,7 +230,7 @@ export class ResultsComponent implements OnInit {
         this.appService.hideLoader();
     }
     buildPurposeDistribution() {
-        const params = {};
+        const params: any = {};
         if (this.currentTypeDetails === 'who') {
             params['apps'] = [this.paramId];
         }
@@ -240,9 +240,9 @@ export class ResultsComponent implements OnInit {
         this.appService.showLoader();
         this.dataService.getPurposeDistribution(params).subscribe((data: any) => {
             this.appService.hideLoader();
-            const rows = [];
+            const rows: any[] = [];
             if (data && data.length > 0) {
-                data.forEach(item => {
+                data.forEach((item: any) => {
                     const purpose = GetPurposeInfo(item['_id'].type, item['_id'].purpose);
                     if (purpose) {
                         rows.push([purpose.shortLabel, item.count]);
@@ -255,15 +255,15 @@ export class ResultsComponent implements OnInit {
         });
     }
     buildCategoryWiseDistribution() {
-        const params = {};
+        const params: any = {};
         if (this.currentTypeDetails === 'where') {
             params['hosts'] = [this.paramId];
             this.appService.showLoader();
             this.dataService.getCategoryWiseDistribution(params).subscribe((data: any) => {
                 this.appService.hideLoader();
-                const rows = [];
+                const rows: any = [];
                 if (data && data.length > 0) {
-                    data.forEach(item => {
+                    data.forEach((item: any) => {
                         if (item['_id'] && item['_id'].genre && item['_id'].genre.length > 0) {
                             rows.push([item['_id'].genre[0], item.count]);
                         }
@@ -275,7 +275,7 @@ export class ResultsComponent implements OnInit {
             });
         }
     }
-    buildSearchParamsViewer(params) {
+    buildSearchParamsViewer(params: any) {
         if (params.hosts) {
             this.queryParamsView.push({
                 id: 'hosts',
@@ -343,7 +343,7 @@ export class ResultsComponent implements OnInit {
                                     const purposeData: any = value['_id'];
                                     const purposeInfo = GetPurposeInfo(purposeData.type, purposeData.purpose);
                                     this.statistics.push({
-                                        key: 'is the most popular purpose of data sent here', value: purposeInfo.shortLabel
+                                        key: 'The most popular reason for sending data ', value: purposeInfo.shortLabel
                                     });
                                     break;
                                 }
@@ -351,21 +351,21 @@ export class ResultsComponent implements OnInit {
                                     const typeData: any = value['_id'];
                                     const typeInfo = GetTaxonomyInfo(typeData);
                                     this.statistics.push({
-                                        key: 'is the most frequent type of data sent here', value: typeInfo.label
+                                        key: 'The type of data being sent most frequently', value: typeInfo.label
                                     });
                                     break;
                                 }
                                 case 'POPULAR_HOST': {
                                     const hostData: any = value['_id'];
                                     this.statistics.push({
-                                        key: 'is the most popular destination for data', value: hostData.host
+                                        key: 'The most frequent destination for data', value: hostData.host
                                     });
                                     break;
                                 }
                                 case 'POPULAR_APP': {
                                     const appData: any = value['_id'];
                                     this.statistics.push({
-                                        key: 'is the most recurring app here', value: appData.title ? appData.title : appData.app
+                                        key: 'The most recurring app sending app', value: appData.title ? appData.title : appData.app
                                     });
                                     break;
                                 }

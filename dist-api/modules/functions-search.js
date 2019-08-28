@@ -28,9 +28,9 @@ function GetSearchToken(client, params, callback) {
         const appsCollection = constants_1.GetAppsCollection(client);
         const hostsCollection = constants_1.GetHostsCollection(client);
         let skip = 0, limit = 5;
-        if (!_.isEmpty(params.skip))
+        if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (!_.isEmpty(params.limit))
+        if (_.isFinite(params.limit))
             limit = parseInt(params.limit) || 10;
         const appsData = yield appsCollection.aggregate([
             {

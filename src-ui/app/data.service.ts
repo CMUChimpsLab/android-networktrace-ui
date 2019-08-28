@@ -52,6 +52,20 @@ export class DataService {
             host: host
         });
     }
+    getApps(skip = 0, limit = 0) {
+        const url = API_URL + `/api/apps`;
+        return this.http.post(url, {
+            limit: limit,
+            skip: skip
+        });
+    }
+    getHosts(skip = 0, limit = 0) {
+        const url = API_URL + `/api/hosts`;
+        return this.http.post(url, {
+            limit: limit,
+            skip: skip
+        });
+    }
     getSearchResults(token, skip = 0, limit = 5) {
         this.cancelPendingRequests$.next();
         const url = API_URL + `/api/search/${token}?skip=${skip}&limit=${limit}`;

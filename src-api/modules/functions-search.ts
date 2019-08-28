@@ -11,8 +11,8 @@ export async function GetSearchToken(client: any, params: any, callback: Functio
     const appsCollection = GetAppsCollection(client);
     const hostsCollection = GetHostsCollection(client);
     let skip = 0, limit = 5;
-    if (!_.isEmpty(params.skip)) skip = parseInt(params.skip) || 0;
-    if (!_.isEmpty(params.limit)) limit = parseInt(params.limit) || 10;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
     const appsData = await appsCollection.aggregate([
         {
             "$match": Object.assign({}, {

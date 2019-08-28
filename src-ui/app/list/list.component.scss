@@ -1,0 +1,70 @@
+.results-container-item {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 -10px;
+
+    .results-list-item {
+        display: flex;
+        width: 33%;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 15px;
+        background: transparent;
+        transition: all 0.3s linear 0s;
+        cursor: pointer;
+        &:hover {
+            background: #f0f0f0;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            order: 1;
+            flex: initial;
+
+            img {
+                max-width: 36px;
+                max-height: 36px;
+                cursor: pointer;
+            }
+        }
+
+        .package {
+            font-weight: 300;
+            font-size: small;
+            color: #444444;
+            width: 100%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: pointer;
+        }
+        .name {
+            font-weight: 500;
+            font-size: medium;
+            color: #444444;
+            width: 100%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: pointer;
+        }
+        .name-stuff {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            order: 2;
+            width: calc(100% - 48px);
+            overflow-x: hidden;
+        }
+    }
+}
+
+/deep/ .mat-paginator-range-label {
+    display: none !important;
+}

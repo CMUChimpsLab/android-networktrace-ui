@@ -44,8 +44,8 @@
         <div class="container flex-content statistics-item-holder"
             *ngIf="statistics.length > 0">
             <div class="statistics-item" *ngFor="let stat of statistics">
-                <label class="upper">{{stat.value}}</label>
                 <label class="lower">{{stat.key}}</label>
+                <label class="upper">{{stat.value}}</label>
             </div>
         </div>
     </div>
