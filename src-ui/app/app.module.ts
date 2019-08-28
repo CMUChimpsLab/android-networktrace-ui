@@ -27,6 +27,8 @@ import { DistributionBarChartComponent } from './distribution-bar-chart/distribu
 import { DistributionPieChartComponent } from './distribution-pie-chart/distribution-pie-chart.component';
 import { DataService } from './data.service';
 import { MatPaginatorIntlCro } from './paginator-labels.service';
+import { FAQComponent } from './faq/faq.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +36,8 @@ import { MatPaginatorIntlCro } from './paginator-labels.service';
         HomeComponent,
         ResultsComponent,
         HeaderComponent,
+        FAQComponent,
+        ListComponent,
         SearchFilterModalComponent,
         DistributionBarChartComponent,
         DistributionPieChartComponent

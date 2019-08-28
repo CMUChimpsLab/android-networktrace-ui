@@ -2,10 +2,64 @@
 @import '../../shared';
 
 .home-container {
+    .home-header2 {
+        background: rgba($accent, 1);
+        color: rgba($color: #fff, $alpha: 0.75);
+        position: relative;
+        overflow: hidden;
+
+        .container {
+            position: relative;
+            padding: 180px 0 60px 0;
+            z-index: 3;
+            display: flex;
+            flex-flow: column;
+            .up {
+                font-size: 60px;
+                font-weight: 100;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+
+                strong {
+                    font-weight: 800;
+                }
+            }
+            .down {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                p {
+                    margin-top: 30px;
+                    line-height: 60px;
+                    font-size: large;
+                    border-top: 2px solid rgba($color: #fff, $alpha: 0.75);
+                }
+            }
+            .btn-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 40px 0 20px 0;
+                button {
+                    line-height: 48px;
+                    height: 48px;
+                }
+            }
+        }
+    }
+
     .home-header {
         background: rgba($accent, 0.10);
         color: rgba($color: #fff, $alpha: 0.75);
         position: relative;
+        .search-wrapper {
+            button {
+                line-height: 48px;
+                height: 48px;
+            }
+        }
 
         .overlay {
             background-color: rgba(#000, 0.80);
@@ -45,7 +99,7 @@
 
         .container {
             position: relative;
-            padding: 60px 0 15px 0;
+            padding: 60px 0 45px 0;
             z-index: 3;
 
             h1 {
@@ -71,12 +125,59 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            button {
+                line-height: 48px;
+                height: 48px;
+            }
         }
     }
 
     .home-content {
         .container {
             padding: 60px 0;
+        }
+
+        .process-bubbles-holder {
+            .process-bubbles-wrapper {
+                display: flex;
+                margin: 0 -30px;
+                margin-top: 15px;
+                .process-bubble {
+                    flex: 1;
+                    width: 33%;
+                    padding: 0 30px;
+                    display: flex;
+                    flex-direction: column;
+                    .process-num {
+                        background: #f6f6f6;
+                        line-height: 36px;
+                        text-align: center;
+                        height: 36px;
+                        margin-bottom: 15px;
+                        order: 1;
+                        letter-spacing: 1px;
+                        word-spacing: 5px;
+                        width: 100px;
+                        font-size: small;
+                        color: rgba(#000, 0.50);
+                    }
+                    .process-img {
+                        width: 75%;
+                        order: 3;
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+                    .process-text {
+                        order: 2;
+                        margin: 0px 0 15px 0;
+                        p {
+                            font-size: medium;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
         }
 
         .top-queries-wrapper {

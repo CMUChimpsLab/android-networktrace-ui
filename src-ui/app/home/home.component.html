@@ -1,5 +1,18 @@
 <div class="home-container">
-    <div class="home-header">
+    <div class="home-header2">
+        <div class="container">
+            <div class="up">
+                <strong>who</strong> . <strong>what</strong> . <strong>where</strong> . <strong>why</strong>
+            </div>
+            <div class="down">
+                <p>Analysing data shared by Android Apps</p>
+            </div>
+            <div class="btn-container">
+                <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="home-header">
         <div class="img"></div>
         <div class="overlay"></div>
         <div class="container">
@@ -13,9 +26,44 @@
                 <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="home-content">
         <div class="container p-0">
+            <div class="results-wrapper">
+                <div class="process-bubbles-holder">
+                    <label>What did we do ? </label>
+                    <div class="process-bubbles-wrapper">
+                        <div class="process-bubble">
+                            <div class="process-num">STEP 1</div>
+                            <div class="process-img">
+                                <img src='../../assets/collect.svg' />
+                            </div>
+                            <div class="process-text">
+                                <p>We collated network activity for 16000+ android apps from across all regions</p>
+                            </div>
+                        </div>
+                        <div class="process-bubble">
+                            <div class="process-num">STEP 2</div>
+                            <div class="process-img">
+                                <img src='../../assets/analyze.svg' />
+                            </div>
+                            <div class="process-text">
+                                <p>We analyzed the data to look for patterns and similarities based on a rich taxonomy
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-bubble">
+                            <div class="process-num">STEP 3</div>
+                            <div class="process-img">
+                                <img src='../../assets/present.svg' />
+                            </div>
+                            <div class="process-text">
+                                <p>We built a web app to help you visulize where do the apps send data and why.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="results-wrapper">
                 <div class="top-queries-wrapper">
                     <label>Top Queries</label>
@@ -25,7 +73,8 @@
                 </div>
             </div>
             <div class="results-wrapper">
-                <label style="margin-bottom: 45px;">Let's look at some popular apps and what data they send to where and why</label>
+                <label style="margin-bottom: 45px;">Let's look at some popular apps and what data they send to where and
+                    why</label>
                 <div class="results-container">
                     <div class="results-container-item" *ngFor="let group of rowGroups; let i = index;">
                         <div class="results-container-item-content">
@@ -39,8 +88,11 @@
                                             <td class="who actionable" [routerLink]="['/results/who/' + row.app]">
                                                 <div class="result-item-value"><span>{{row.title}}</span> sends </div>
                                             </td>
-                                            <td class="what actionable" [routerLink]="['/results']" [queryParams]="{types: [row.type]}" [matTooltip]="row.typeInfo?.description" matTooltipPosition="above" matTooltipClass="phone-data-tooltip">
-                                                <div class="result-item-value" >
+                                            <td class="what actionable" [routerLink]="['/results']"
+                                                [queryParams]="{types: [row.type]}"
+                                                [matTooltip]="row.typeInfo?.description" matTooltipPosition="above"
+                                                matTooltipClass="phone-data-tooltip">
+                                                <div class="result-item-value">
                                                     <i [ngClass]="row.typeInfo.icon"></i><span>{{row.typeInfo?.label}}
                                                         data</span>
                                                 </div>
@@ -49,7 +101,8 @@
                                                 <div class="result-item-value"><span>to {{row.host}}</span>
                                                 </div>
                                             </td>
-                                            <td class="why actionable" [routerLink]="['/results']" [queryParams]="{purposes: [row.purpose]}">
+                                            <td class="why actionable" [routerLink]="['/results']"
+                                                [queryParams]="{purposes: [row.purpose]}">
                                                 <div class="result-item-value">
                                                     <span>{{row.purposeInfo?.label}}</span>
                                                     <span *ngIf="false"><br /><span

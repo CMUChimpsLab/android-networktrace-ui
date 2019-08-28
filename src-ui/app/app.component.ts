@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     loaderShown = false;
     constructor(private appService: AppService, private dataService: DataService) {}
     ngOnInit() {
-        this.appService.headerShown$.subscribe((data: boolean) => {
+        this.appService.headerShown$.subscribe(() => {
             setTimeout(() => {
                 // this.showHeader = data;
             });

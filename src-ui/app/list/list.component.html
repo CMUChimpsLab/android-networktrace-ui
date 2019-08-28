@@ -1,0 +1,25 @@
+<div class="search-container">
+    <div class="search-header">
+        <div class="container flex-content noPaddingBottom" [attr.type]="currentTypeDetails">
+        </div>
+    </div>
+    <div class="search-content">
+        <div class="container position-relative">
+            <div class="results-wrapper pt-0 pb-0">
+                <div class="results-container">
+                    <div class="results-container-item">
+                        <div class="results-list-item" *ngFor="let row of apps; let j = index;">
+                            <div class="logo">
+                                <img [attr.src]="row.icon" />
+                            </div>
+                            <div class="name-stuff">
+                                <label class="name">{{row.title}}</label>
+                                <label class="package">{{row.app}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
