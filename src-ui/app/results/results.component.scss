@@ -23,7 +23,7 @@
                 .statistics-item {
                     // background: #f6f6f6;
                     padding: 0px;
-                    margin: 0 30px 15px 0;
+                    margin: 0 45px 15px 0;
                     min-width: 25%;
                     position: relative;
                     &:before {
@@ -43,15 +43,15 @@
                         padding: 0 8px;
                         &.upper {
                             font-size: large;
-                            font-weight: 400;
-                            color: #707070;
+                            font-weight: 500;
+                            color: #303030;
                         }
                         &.lower {
-                            padding-top: 30px;
+                            padding-top: 36px;
                             border-top: 1px solid rgba(#000, 0.08);
                             font-size: small;
                             font-weight: 500;
-                            color: #707070;
+                            color: #909090;
                         }
                     }
                 }

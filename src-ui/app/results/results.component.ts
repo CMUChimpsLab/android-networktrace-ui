@@ -243,6 +243,7 @@ export class ResultsComponent implements OnInit {
             const rows: any[] = [];
             if (data && data.length > 0) {
                 data.forEach((item: any) => {
+                    console.log(item);
                     const purpose = GetPurposeInfo(item['_id'].type, item['_id'].purpose);
                     if (purpose) {
                         rows.push([purpose.shortLabel, item.count]);
