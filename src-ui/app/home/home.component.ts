@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { DataService } from '../data.service';
 import { BuildRowGroups, SortRowGroups } from '../builder';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     itemsThree = [1, 2, 3];
     itemsFive = [1, 2, 3, 4, 5];
@@ -47,9 +47,13 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.appService.toggleHomePage(true);
         this.appService.showLoader();
         this.appService.hideHeader();
         this.dataService.getBaseRelationships(this.params, 0, 100).subscribe((data: any) => this.buildRows(data, true));
+    }
+    ngOnDestroy() {
+        this.appService.toggleHomePage(false);
     }
     openLink(query) {
         if (!_.isEmpty(query.params)) {

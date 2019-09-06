@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { PageEvent } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-list',
@@ -23,8 +24,10 @@ export class ListComponent implements OnInit {
     pageEvent: PageEvent | undefined;
     constructor(
         private dataService: DataService,
+        private appService: AppService,
         private activatedRoute: ActivatedRoute) {}
     ngOnInit() {
+        this.appService.showLoader();
         this.activatedRoute.params.subscribe((data: any) => {
             if (data.type === 'apps') {
                 this.currentTypeDetails = 'app-list';
@@ -35,6 +38,7 @@ export class ListComponent implements OnInit {
         });
     }
     loadNextPage(event?: PageEvent) {
+        this.appService.showLoader();
         this.skip = event ? event.pageIndex * (event.pageSize) : 0;
         this.pageSize = event ? event.pageSize : 60;
         if (this.currentTypeDetails === 'app-list') {
@@ -45,6 +49,7 @@ export class ListComponent implements OnInit {
                     });
                 }
                 this.apps = data;
+                this.appService.hideLoader();
             });
         } else if (this.currentTypeDetails === 'host-list') {
             this.dataService.getHosts(this.skip, this.pageSize).subscribe((data: Array<any>) => {
@@ -59,6 +64,7 @@ export class ListComponent implements OnInit {
                     });
                 }
                 this.apps = result;
+                this.appService.hideLoader();
             });
         }
     }

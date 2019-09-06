@@ -1,45 +1,45 @@
 <div class="header-wrapper">
     <div class="container">
         <div class="header-left">
-            <label [routerLink]="['/home']">Android Network Traces</label>
+            <label *ngIf="!showHeader" [routerLink]="['/home']">Android Network Traces</label>
         </div>
         <div class="header-right">
-            <div class="search-wrapper" data-tag="search-wrapper">
-                <div class="search-bar-holder">
-                    <input placeholder="Search by app name or destination, for e.g. Instagram or Facebook"
-                        (keyup.escape)="closeResultsBar()"
-                        (keyup.enter)="onDebouncedSearchTokenChanged()"
-                        (focus)="onInputFocus()"
-                        (input)="onDebouncedSearchTokenChanged()"
-                        [(ngModel)]="searchToken" [readonly]="advancedFilterOn" />
-                    <i class="material-icons search-icon">search</i>
-                    <i class="material-icons advanced-icon" [class.active-icon]="advancedFilterOn"
-                        matTooltip="Advanced Filters" (click)="openAdvancedModal()">tune</i>
-                </div>
-                <div class="search-bar-results-wrapper" *ngIf="showResultsBar">
-                    <div class="search-bar-result-content" *ngIf="apps.length > 0">
-                        <label>Android apps</label>
-                        <ul>
-                            <li *ngFor="let item of apps" [routerLink]="['/results/who/' + item.app]">
-                                <img [attr.src]="item.icon" />
-                                <span>{{item.title}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="search-bar-result-content" *ngIf="hosts.length > 0">
-                        <label>Web Services</label>
-                        <ul>
-                            <li *ngFor="let item of hosts" [routerLink]="['/results/where/' + item.host]">
-                                <img [attr.src]="item.icon" />
-                                <span>{{item.host}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <a class="header-link" [routerLink]="['/list/apps']">All Apps</a>
-            <a class="header-link" [routerLink]="['/list/hosts']">All Destinations</a>
+            <a class="header-link" [routerLink]="['/list/hosts']">All Services</a>
             <a class="header-link" [routerLink]="['/faq']">FAQs</a>
+            <div class="search-wrapper" data-tag="search-wrapper">
+                    <div class="search-bar-holder">
+                        <input placeholder="Search "
+                            (keyup.escape)="closeResultsBar()"
+                            (keyup.enter)="onDebouncedSearchTokenChanged()"
+                            (focus)="onInputFocus()"
+                            (input)="onDebouncedSearchTokenChanged()"
+                            [(ngModel)]="searchToken" [readonly]="advancedFilterOn" />
+                        <i class="material-icons search-icon">search</i>
+                        <i class="material-icons advanced-icon" [class.active-icon]="advancedFilterOn"
+                            matTooltip="Advanced Filters" (click)="openAdvancedModal()">tune</i>
+                    </div>
+                    <div class="search-bar-results-wrapper" *ngIf="showResultsBar">
+                        <div class="search-bar-result-content" *ngIf="apps.length > 0">
+                            <label>Android apps</label>
+                            <ul>
+                                <li *ngFor="let item of apps" [routerLink]="['/results/who/' + item.app]">
+                                    <img [attr.src]="item.icon" />
+                                    <span>{{item.title}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-bar-result-content" *ngIf="hosts.length > 0">
+                            <label>Web Services</label>
+                            <ul>
+                                <li *ngFor="let item of hosts" [routerLink]="['/results/where/' + item.host]">
+                                    <img [attr.src]="item.icon" />
+                                    <span>{{item.host}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
