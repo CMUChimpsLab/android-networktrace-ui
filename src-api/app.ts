@@ -89,6 +89,17 @@ app.post('/api/relationships/', (req, res) => {
         });
     });
 });
+app.post('/api/groups/', (req, res) => {
+    const params = Object.assign({},
+        GetQueryParams(req),
+        req.body);
+    MC.GetMongoDbClient((client: any) => {
+        MC.Groups.GetGroupRelationships(client, params, (data: any) => {
+            res.json(data);
+        });
+    });
+});
+
 app.get('/api/search/:token', (req, res) => {
     const params = Object.assign({},
         GetQueryParams(req),

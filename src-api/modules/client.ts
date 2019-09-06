@@ -6,6 +6,7 @@ const MongoClient = MongoClientRequest.MongoClient;
 import * as AppAPIs from './functions-app';
 import * as MetaAPIs from './functions-meta';
 import * as RelationshipAPIs from './functions-relationship';
+import * as GroupAPIs from './functions-groups';
 import * as SearchAPIs from './functions-search';
 import * as VisualizationAPIs from './functions-visualizations';
 import * as StatsAPIs from './functions-stats';
@@ -30,4 +31,5 @@ export const Relationship = RelationshipAPIs;
 export const Search = SearchAPIs;
 export const Visualization = VisualizationAPIs;
 export const Stats = StatsAPIs;
+export const Groups = GroupAPIs;
 
