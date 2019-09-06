@@ -23,7 +23,7 @@
                         <p>{{appDetails?.summary}}</p>
                     </div>
                 </ng-container>
-                <ng-container *ngIf="currentTypeDetails === 'where'">
+                <ng-container *ngIf="currentTypeDetails === 'where' || currentTypeDetails === 'group'">
                     <img [attr.src]="hostDetails?.icon" />
                     <div class="type-details-specifics">
                         <label class="who_company" *ngIf="hostDetails?.who_company"><span class="not-colored">{{hostDetails?.who_company}}</span></label>

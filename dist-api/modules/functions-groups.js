@@ -23,6 +23,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("./client");
 const constants_1 = require("./constants");
 const _ = __importStar(require("lodash"));
+function GetGroupDetails(client, params, callback) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const groupsCollection = constants_1.GetGroupsCollection(client);
+        let data = null;
+        if (params['group']) {
+            data = yield groupsCollection.find({ group: params['group'] }).toArray();
+            client_1.CleanupMongoClient(client);
+            if (data.length > 0) {
+                callback(data[0]);
+            }
+            else {
+                callback(null);
+            }
+        }
+        callback(null);
+    });
+}
+exports.GetGroupDetails = GetGroupDetails;
 function GetGroupRelationships(client, params, callback) {
     return __awaiter(this, void 0, void 0, function* () {
         const groupsCollection = constants_1.GetGroupsCollection(client);

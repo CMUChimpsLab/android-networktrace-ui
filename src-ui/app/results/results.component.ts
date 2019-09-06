@@ -12,6 +12,7 @@ enum FetchType {
     PLAIN_SEARCH,
     WHO,
     WHERE,
+    GROUP,
     COMPOSITE_SEARCH
 }
 
@@ -93,7 +94,7 @@ export class ResultsComponent implements OnInit {
                             if (column) {
                                 column.show = false;
                             }
-                        } else if (this.currentTypeDetails === 'where') {
+                        } else if (this.currentTypeDetails === 'where' || this.currentTypeDetails === 'group') {
                             this.activeSorterCol = 'who';
                             this.columnOptions.forEach(col => col.show = true);
                             const column = this.columnOptions.find(col => col.id === 'where');
@@ -164,6 +165,16 @@ export class ResultsComponent implements OnInit {
                     }
                 });
                 this.fetchCallType = FetchType.WHERE;
+            } else if (this.currentTypeDetails === 'group') {
+                this.showExpander = true;
+                this.showPaginator = true;
+                this.dataService.getGroupDetails(this.paramId).subscribe(data => {
+                    this.hostDetails = data;
+                    if (!this.hostDetails.icon) {
+                        this.hostDetails.icon = 'assets/worldwide_256.png';
+                    }
+                });
+                this.fetchCallType = FetchType.GROUP;
             }
         }
         this.loadNextPage(null);
@@ -206,6 +217,11 @@ export class ResultsComponent implements OnInit {
             case FetchType.WHERE: {
                 // tslint:disable-next-line:max-line-length
                 this.dataService.getHostRelationships(this.paramId, this.skip, this.limit).subscribe((data: any) => this.buildRows(data, true));
+                break;
+            }
+            case FetchType.GROUP: {
+                // tslint:disable-next-line:max-line-length
+                this.dataService.getGroupRelationships(this.paramId, this.skip, this.limit).subscribe((data: any) => this.buildRows(data, true));
                 break;
             }
             case FetchType.COMPOSITE_SEARCH: {

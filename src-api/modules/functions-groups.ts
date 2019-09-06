@@ -7,6 +7,21 @@ import { CleanupMongoClient } from "./client";
 import { AppProjection, HostProjection, GetAppsCollection, GetHostsCollection, LookUpExpressionForRelationshipsUsingApp, LookUpExpressionForRelationshipsUsingHost, LookUpExpressionForAppsFromRelationships, LookUpExpressionForHostsFromRelationships, GetRelationshipCollection, CombinedProjectionFromRels, GetGroupsCollection } from "./constants";
 import * as _ from 'lodash';
 
+export async function GetGroupDetails(client: any, params: any, callback: Function) {
+    const groupsCollection = GetGroupsCollection(client);
+    let data = null;
+    if (params['group']) {
+        data = await groupsCollection.find({ group: params['group'] }).toArray();
+        CleanupMongoClient(client);
+        if (data.length > 0) {
+            callback(data[0]);
+        } else {
+            callback(null);
+        }
+    }
+    callback(null);
+}
+
 export async function GetGroupRelationships(client: any, params: any, callback: Function) {
     const groupsCollection = GetGroupsCollection(client);
     const relationshipsCollection = GetRelationshipCollection(client);

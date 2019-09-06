@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     apps = [];
     hosts = [];
     onDebouncedSearchTokenChanged = _.debounce(this.onSearchTokenChanged, 100);
-    showHeader = true;
+    showHeader = false;
     onDOMEventListener = (e: MouseEvent) => {
         if (e.target) {
             const target  = e.target;
@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit {
             }
         });
         this.appService.homePageActive$.subscribe((data: boolean) => {
-            this.showHeader = data;
+            setTimeout(() => {
+                this.showHeader = data;
+            });
         });
     }
     onInputFocus() {

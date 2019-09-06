@@ -94,7 +94,7 @@ app.post('/api/relationships/', (req, res) => {
 app.post('/api/groups/', (req, res) => {
     const params = Object.assign({}, GetQueryParams(req), req.body);
     MC.GetMongoDbClient((client) => {
-        MC.Groups.GetGroupRelationships(client, params, (data) => {
+        MC.Groups.GetGroupDetails(client, params, (data) => {
             res.json(data);
         });
     });
