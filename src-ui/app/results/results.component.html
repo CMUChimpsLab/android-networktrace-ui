@@ -27,8 +27,11 @@
                     <img [attr.src]="hostDetails?.icon" />
                     <div class="type-details-specifics">
                         <label class="who_company" *ngIf="hostDetails?.who_company"><span class="not-colored">{{hostDetails?.who_company}}</span></label>
-                        <label>What data is <span>collected</span> by
+                        <label *ngIf="currentTypeDetails === 'where'" >What data is <span>collected</span> by
                             <strong >{{hostDetails?.host}} </strong>?
+                        </label>
+                        <label *ngIf="currentTypeDetails === 'group'" >What data are <span>collected</span> by
+                            <strong > its services </strong>?
                         </label>
                         <p>{{hostDetails?.wiki_company}}</p>
                     </div>

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
     queries = [
         {
-            label: 'Which apps send data to Facebook ? ', params: {
+            label: 'Which apps send data to Facebook services ? ', params: {
                 'hosts': [
                     'www.facebook.com',
                     'm.facebook.com',
@@ -37,6 +37,11 @@ export class HomeComponent implements OnInit, OnDestroy {
             label: 'What data is sent by fitness apps ? ', params: {
                 'categories': ['Health & Fitness']
             }
+        }, {
+            label: 'What data is collected by Google ? ', params: {
+                'group': ['google']
+            },
+            groupNavigation: true
         }
     ];
     rowGroups = [];
@@ -56,10 +61,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.appService.toggleHomePage(false);
     }
     openLink(query) {
-        if (!_.isEmpty(query.params)) {
+        if (!query.groupNavigation && !_.isEmpty(query.params)) {
             this.router.navigate(['results'], {
                 queryParams: query.params
             });
+        } else if (query.groupNavigation) {
+            this.router.navigate([`/results/group/${query.params.group[0]}`]);
         }
     }
     openAdvancedModal() {
