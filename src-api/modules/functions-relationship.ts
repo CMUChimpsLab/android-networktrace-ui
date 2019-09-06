@@ -4,7 +4,7 @@
 // tslint:disable:prefer-const
 // tslint:disable:radix
 import { CleanupMongoClient } from "./client";
-import { AppProjection, HostProjection, GetAppsCollection, GetHostsCollection, LookUpExpressionForRelationshipsUsingApp, LookUpExpressionForRelationshipsUsingHost, LookUpExpressionForAppsFromRelationships, LookUpExpressionForHostsFromRelationships, GetRelationshipCollection, CombinedProjectionFromRels } from "./constants";
+import { AppProjection, HostProjection, GetAppsCollection, GetHostsCollection, LookUpExpressionForRelationshipsUsingApp, LookUpExpressionForRelationshipsUsingHost, LookUpExpressionForAppsFromRelationships, LookUpExpressionForHostsFromRelationships, GetRelationshipCollection, CombinedProjectionFromRels, GetGroupsCollection } from "./constants";
 import * as _ from 'lodash';
 
 async function GetRelationshipsGivenAppList(collection: any, params: any, appList: string[]) {
@@ -254,16 +254,58 @@ async function GetRelationshipsGivenNothing(client: any, params: any) {
     }
 }
 
+export async function GetGroupRelationships(groupsCollection: any, relationshipsCollection: any, params: any, callback: Function) {
+    let group = null;
+    if (!_.isEmpty(params.group)) group = params.group;
+    let skip = 0, limit = 0;
+    if (_.isFinite(params.skip)) skip = parseInt(params.skip) || 0;
+    if (_.isFinite(params.limit)) limit = parseInt(params.limit) || 10;
+    let data: any[] = [];
+    if (group) {
+        const groupData = await groupsCollection.find({ 'group': group }).toArray();
+        let AggregateExpressions: any[] = [];
+        AggregateExpressions = [
+            {
+                "$match": {
+                    'host': { $in: groupData[0].hosts }
+                }
+            },
+            { "$sort": { "host": -1 } },
+            { "$lookup": LookUpExpressionForRelationshipsUsingHost },
+            { "$unwind": "$relinfo" },
+            { "$skip": skip || 0 },
+            { "$limit": limit || 10 },
+            {
+                "$lookup": {
+                    "localField": "relinfo.app",
+                    "from": "apps",
+                    "foreignField": "app",
+                    "as": "appinfo"
+                }
+            },
+            { "$unwind": "$appinfo" },
+            { "$project": HostProjection }
+        ];
+        return relationshipsCollection.aggregate(AggregateExpressions).toArray();
+    }
+}
+
+
 export async function GetRelationships(client: any, params: any, callback: Function) {
     const appsCollection = GetAppsCollection(client);
     const hostsCollection = GetHostsCollection(client);
-    let app = null, host = null, appList = [], useCount = false, count = null;
+    const groupsCollection = GetGroupsCollection(client);
+    const relationshipsCollection = GetRelationshipCollection(client);
+    let app = null, host = null, group = null, appList = [], useCount = false, count = null;
+    if (!_.isEmpty(params.group)) group = params.group;
     if (!_.isEmpty(params.app)) app = params.app;
     if (!_.isEmpty(params.host)) host = params.host;
     if (!_.isEmpty(params.appList)) appList = params.appList;
     if (!_.isEmpty(params.count)) useCount = params.count === 'true';
     let data = [];
-    if (appList.length > 0) {
+    if (group) {
+        data = await GetGroupRelationships(groupsCollection, relationshipsCollection, params, group);
+    } else if (appList.length > 0) {
         data = await GetRelationshipsGivenAppList(appsCollection, params, appList);
     } else if (app && host) {
         data = await GetRelationshipsGivenAppAndHost(appsCollection, params, app, host);
