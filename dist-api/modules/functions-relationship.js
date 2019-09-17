@@ -291,11 +291,56 @@ function GetRelationshipsGivenNothing(client, params) {
         }
     });
 }
+function GetGroupRelationships(groupsCollection, relationshipsCollection, params, callback) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let group = null;
+        if (!_.isEmpty(params.group))
+            group = params.group;
+        let skip = 0, limit = 0;
+        if (_.isFinite(params.skip))
+            skip = parseInt(params.skip) || 0;
+        if (_.isFinite(params.limit))
+            limit = parseInt(params.limit) || 10;
+        let data = [];
+        if (group) {
+            const groupData = yield groupsCollection.find({ 'group': group }).toArray();
+            let AggregateExpressions = [];
+            AggregateExpressions = [
+                {
+                    "$match": {
+                        'host': { $in: groupData[0].hosts }
+                    }
+                },
+                { "$sort": { "host": -1 } },
+                { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingHost },
+                { "$unwind": "$relinfo" },
+                { "$skip": skip || 0 },
+                { "$limit": limit || 10 },
+                {
+                    "$lookup": {
+                        "localField": "relinfo.app",
+                        "from": "apps",
+                        "foreignField": "app",
+                        "as": "appinfo"
+                    }
+                },
+                { "$unwind": "$appinfo" },
+                { "$project": constants_1.HostProjection }
+            ];
+            return relationshipsCollection.aggregate(AggregateExpressions).toArray();
+        }
+    });
+}
+exports.GetGroupRelationships = GetGroupRelationships;
 function GetRelationships(client, params, callback) {
     return __awaiter(this, void 0, void 0, function* () {
         const appsCollection = constants_1.GetAppsCollection(client);
         const hostsCollection = constants_1.GetHostsCollection(client);
-        let app = null, host = null, appList = [], useCount = false, count = null;
+        const groupsCollection = constants_1.GetGroupsCollection(client);
+        const relationshipsCollection = constants_1.GetRelationshipCollection(client);
+        let app = null, host = null, group = null, appList = [], useCount = false, count = null;
+        if (!_.isEmpty(params.group))
+            group = params.group;
         if (!_.isEmpty(params.app))
             app = params.app;
         if (!_.isEmpty(params.host))
@@ -305,7 +350,10 @@ function GetRelationships(client, params, callback) {
         if (!_.isEmpty(params.count))
             useCount = params.count === 'true';
         let data = [];
-        if (appList.length > 0) {
+        if (group) {
+            data = yield GetGroupRelationships(groupsCollection, relationshipsCollection, params, group);
+        }
+        else if (appList.length > 0) {
             data = yield GetRelationshipsGivenAppList(appsCollection, params, appList);
         }
         else if (app && host) {

@@ -3,6 +3,7 @@
 export const APPS_COLLECTION_NAME = 'apps';
 export const HOST_COLLECTION_NAME = 'hosts';
 export const RELATIONSHIPS_COLLECTION_NAME = 'relationships';
+export const GROUPS_COLLECTION_NAME = 'groups';
 // export const DB_NAME = 'privacy-analytics-v2';
 // export const MongoURL = 'mongodb://admin:super-admin-1234@cmu-projects-cluster-shard-00-00-ylevo.mongodb.net:27017,cmu-projects-cluster-shard-00-01-ylevo.mongodb.net:27017,cmu-projects-cluster-shard-00-02-ylevo.mongodb.net:27017/test?ssl=true&replicaSet=CMU-PROJECTS-CLUSTER-shard-0&authSource=admin&retryWrites=true';
 export const DB_NAME = 'privacy-analytics';
@@ -93,6 +94,9 @@ export function GetHostsCollection(client: any) {
 
 export function GetRelationshipCollection(client: any) {
     return client.db(DB_NAME).collection(RELATIONSHIPS_COLLECTION_NAME);
+}
+export function GetGroupsCollection(client: any) {
+    return client.db(DB_NAME).collection(GROUPS_COLLECTION_NAME);
 }
 
 export let LookUpExpressionForRelationshipsUsingApp = {

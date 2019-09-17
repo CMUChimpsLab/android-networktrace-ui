@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { DataService } from '../data.service';
 import { BuildRowGroups, SortRowGroups } from '../builder';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     itemsThree = [1, 2, 3];
     itemsFive = [1, 2, 3, 4, 5];
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     };
     queries = [
         {
-            label: 'Which apps send data to Facebook ? ', params: {
+            label: 'Which apps send data to Facebook services ? ', params: {
                 'hosts': [
                     'www.facebook.com',
                     'm.facebook.com',
@@ -37,6 +37,11 @@ export class HomeComponent implements OnInit {
             label: 'What data is sent by fitness apps ? ', params: {
                 'categories': ['Health & Fitness']
             }
+        }, {
+            label: 'What data is collected by Google ? ', params: {
+                'group': ['google']
+            },
+            groupNavigation: true
         }
     ];
     rowGroups = [];
@@ -47,15 +52,21 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.appService.toggleHomePage(true);
         this.appService.showLoader();
         this.appService.hideHeader();
         this.dataService.getBaseRelationships(this.params, 0, 100).subscribe((data: any) => this.buildRows(data, true));
     }
+    ngOnDestroy() {
+        this.appService.toggleHomePage(false);
+    }
     openLink(query) {
-        if (!_.isEmpty(query.params)) {
+        if (!query.groupNavigation && !_.isEmpty(query.params)) {
             this.router.navigate(['results'], {
                 queryParams: query.params
             });
+        } else if (query.groupNavigation) {
+            this.router.navigate([`/results/group/${query.params.group[0]}`]);
         }
     }
     openAdvancedModal() {

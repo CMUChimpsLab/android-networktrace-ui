@@ -17,6 +17,11 @@ export class AppService {
     loaderShown$ = this.loaderShown.asObservable();
     private paginatorLabel = new Subject();
     paginatorLabel$ = this.paginatorLabel.asObservable();
+    private homePageActive = new Subject();
+    homePageActive$ = this.homePageActive.asObservable();
+    toggleHomePage(data) {
+        this.homePageActive.next(data);
+    }
     showHeader() {
         this.headerShown.next(true);
     }

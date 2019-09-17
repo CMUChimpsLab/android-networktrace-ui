@@ -36,6 +36,14 @@ export class DataService {
         const url = API_URL + `/api/relationships?host=${host}&skip=${skip}&limit=${limit}&count=${count}`;
         return this.http.post(url, {});
     }
+    getGroupRelationships(group, skip = 0, limit = 25, count = false) {
+        const url = API_URL + `/api/relationships`;
+        return this.http.post(url, {
+            group: group,
+            skip: skip || 0,
+            limit: limit || 0
+        });
+    }
     getBaseRelationships(params, skip = 0, limit = 10, count = false) {
         const url = API_URL + `/api/relationships?&skip=${skip}&limit=${limit}&count=${count}`;
         return this.http.post(url, params);
@@ -50,6 +58,12 @@ export class DataService {
         const url = API_URL + `/api/hosts`;
         return this.http.post(url, {
             host: host
+        });
+    }
+    getGroupDetails(group) {
+        const url = API_URL + `/api/groups`;
+        return this.http.post(url, {
+            group: group
         });
     }
     getApps(skip = 0, limit = 0) {

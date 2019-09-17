@@ -16,7 +16,7 @@ export const TAXONOMIES = [
                 icon: 'phone',
                 purposes: [
                     { shortLabel: 'Tracking ADs', key: 'AD_TRACKING', label: 'for advertising through ID tracking ', },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_TRACKING', label: 'for data analytics through device tracking ' },
+                    { shortLabel: 'General Analytics', key: 'ANALYTIC_TRACKING', label: 'for data analytics through device tracking ' },
                     { shortLabel: 'Personalizing Sign-out experience', key: 'SIGNOUT_PERSONALIZATION', label: 'for personalizing Signed-out user experience' },
                     { shortLabel: 'Anti-fraud activities', key: 'ANTI_FRAUD', label: ' for fraud detection tasks ' },
                     { shortLabel: 'Authentication Activities', key: 'AUTHENTICATION', label: 'for authentication tasks (e.g. cookie)' }
@@ -38,7 +38,7 @@ export const TAXONOMIES = [
                 purposes: [
                     { shortLabel: 'Battery-based events', key: 'BATTERY_EVENT', label: 'for battery-based event trigger (charging, low battery)' },
                     { shortLabel: 'Power management tasks ', key: 'POWER_MANAGEMENT', label: 'for managing power tasks' },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' }
+                    { shortLabel: 'Battery Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' }
                 ],
                 description: 'Current battery percentages or charging status etc.'
             },
@@ -49,7 +49,7 @@ export const TAXONOMIES = [
                 purposes: [
                     { shortLabel: 'Customizing interfaces', key: 'INTERFACE_CUSTOMIZATION', label: 'for customizing interfaces' },
                     { shortLabel: 'Advertizing data', key: 'AD_DATA', label: 'for advertising personalization tasks' },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' },
+                    { shortLabel: 'Device Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' },
                 ],
                 description: 'Phone model, screen size, manufacturer info etc.'
             },
@@ -82,7 +82,7 @@ export const TAXONOMIES = [
                     { shortLabel: 'Network Optimizations', key: 'NETWORK_OPTIMIZATION', label: 'for optimizing network' },
                     { shortLabel: 'Geo-Localization tasks', key: 'GEO_LOCALIZATION', label: 'for geo-localization' },
                     { shortLabel: 'Advertizing data', key: 'AD_DATA', label: 'for advertising personalization tasks' },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' }
+                    { shortLabel: 'Network Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' }
                 ],
                 description: 'Network conncectivity details like WiFi, LTE, 3G, 4G etc.'
             }
@@ -100,7 +100,7 @@ export const TAXONOMIES = [
                 purposes: [
                     { shortLabel: 'Third-party login services', key: 'THIRDPARTY_LOGIN', label: 'for third-party login services' },
                     { shortLabel: 'Advertizing data', key: 'AD_DATA', label: 'for advertising personalization tasks' },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_DATA', label: 'for personalization analytics through data collection' }
+                    { shortLabel: 'Account Analytics', key: 'ANALYTIC_DATA', label: 'for personalization analytics through data collection' }
                 ],
                 description: 'Settings for tasks like syncing data from different services'
             },
@@ -205,7 +205,7 @@ export const TAXONOMIES = [
                     { shortLabel: 'Location based games', key: 'LOCATION_BASED_GAME', label: 'for location based games' },
                     { shortLabel: 'Reverse Geocoding tasks', key: 'REVERSE_GEOCODING', label: 'for reverse geocoding' },
                     { shortLabel: 'Advertizing data', key: 'AD_DATA', label: 'for advertisizing related tasks' },
-                    { shortLabel: 'Data Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' },
+                    { shortLabel: 'Location Analytics', key: 'ANALYTIC_DATA', label: 'for analytics through data collection' },
                 ],
                 description: 'Location related GPS data from the phone + other Geospatial data'
             },

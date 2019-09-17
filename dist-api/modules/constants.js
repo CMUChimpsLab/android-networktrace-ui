@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.APPS_COLLECTION_NAME = 'apps';
 exports.HOST_COLLECTION_NAME = 'hosts';
 exports.RELATIONSHIPS_COLLECTION_NAME = 'relationships';
+exports.GROUPS_COLLECTION_NAME = 'groups';
 // export const DB_NAME = 'privacy-analytics-v2';
 // export const MongoURL = 'mongodb://admin:super-admin-1234@cmu-projects-cluster-shard-00-00-ylevo.mongodb.net:27017,cmu-projects-cluster-shard-00-01-ylevo.mongodb.net:27017,cmu-projects-cluster-shard-00-02-ylevo.mongodb.net:27017/test?ssl=true&replicaSet=CMU-PROJECTS-CLUSTER-shard-0&authSource=admin&retryWrites=true';
 exports.DB_NAME = 'privacy-analytics';
@@ -92,6 +93,10 @@ function GetRelationshipCollection(client) {
     return client.db(exports.DB_NAME).collection(exports.RELATIONSHIPS_COLLECTION_NAME);
 }
 exports.GetRelationshipCollection = GetRelationshipCollection;
+function GetGroupsCollection(client) {
+    return client.db(exports.DB_NAME).collection(exports.GROUPS_COLLECTION_NAME);
+}
+exports.GetGroupsCollection = GetGroupsCollection;
 exports.LookUpExpressionForRelationshipsUsingApp = {
     'localField': 'app',
     'from': 'relationships',

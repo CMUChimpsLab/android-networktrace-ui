@@ -19,17 +19,22 @@
     margin: 0 auto;
     position: relative;
     padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .highchart {
         position: relative;
         z-index: 1;
-        height: 100%;
-        width: 90%; display: block; margin: 0 auto;
+        height: 75%;
+        width: 60%;
+        display: block; margin: 0 auto;
         box-sizing: border-box;
     }
     .content-toggle {
         position: absolute;
         z-index: 2;
         right: 0;
+        top: 60px;
     }
 }
 
