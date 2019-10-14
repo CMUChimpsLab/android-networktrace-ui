@@ -24,7 +24,7 @@
    }
 }
 html, body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     &.overflow-hidden {
         overflow: hidden;
     }
@@ -32,7 +32,7 @@ html, body {
 @include scrollbars(0.50em, #e0e0e0, #f0f0f0);
 @import '~@angular/material/theming';
 $custom-typography: mat-typography-config(
-    $font-family: "'Raleway', Roboto,'Helvetica Neue',sans-serif"
+    $font-family: "'Raleway', 'Roboto','Open Sans','Helvetica Neue',sans-serif"
 );
 
 @include mat-core($custom-typography);
