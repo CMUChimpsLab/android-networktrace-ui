@@ -7,24 +7,28 @@
                     <p class="answer">
                         The goal of this web-app is to educate users about what sort of network activity is being carried out by
                         their apps. We present queryable data visualizations of 'where' and 'why' data is being sent.
+                        Read more about our process <a href="../../assets/mobipurpose_ubicomp.pdf">here</a>.
                     </p>
                 </div>
                 <div class="faq-question">
-                    <label class="question">How did you capture the network activity ?</label>
+                    <label class="question">How did you collect data from smart phone apps to conduct analysis?</label>
                     <p class="answer">
-                        place holder 
+                        The most common way for smartphone apps to communicate with the cloud servers is HTTP(S) request. 
+                        We use VPN to intercept outgoing these HTTP(S) traffic requests and then parse the body of
+                        requests into key-value pairs.
                     </p>
                 </div>
                 <div class="faq-question">
                     <label class="question">How did you analyze the collected data ?</label>
                     <p class="answer">
-                        place holder 
+                        Based on the identified data type, we use a supervised machine learning algorithm to predict the data collection purpose. 
                     </p>
                 </div>
                 <div class="faq-question">
-                    <label class="question">What are the different data types sent by apps ?</label>
+                    <label class="question">What if I want to know what specific data are collected on my phone?</label>
                     <p class="answer">
-                        place holder 
+                        Currently the data we collected is not user-specific. However, you can use the search bar to check 
+                        for a specific app you are looking for. 
                     </p>
                 </div>
                 <div class="faq-question">

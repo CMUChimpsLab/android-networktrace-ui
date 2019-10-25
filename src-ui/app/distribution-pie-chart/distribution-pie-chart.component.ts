@@ -124,7 +124,7 @@ export const SimpleConfig = {
             y: 0, // 10 pixels down from the top
             style: {
                 fontSize: '11px',
-                fontFamily: '"Raleway", sans-serif'
+                fontFamily: '"Open Sans", sans-serif'
             }
         }
     }]
