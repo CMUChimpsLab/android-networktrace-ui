@@ -4,7 +4,6 @@ import { DataService } from "../data.service";
 import { BuildRowGroups, SortRowGroups } from "../builder";
 import * as _ from "lodash";
 import { Router } from "@angular/router";
-import { VizComponent } from "../viz/viz.component";
 
 @Component({
   selector: "app-home",

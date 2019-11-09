@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import * as Highcharts from "highcharts";
 
 @Component({
-  selector: 'app-viz',
-  templateUrl: './viz.component.html',
-  styleUrls: ['./viz.component.scss']
+  selector: "app-viz",
+  templateUrl: "./viz.component.html",
+  styleUrls: ["./viz.component.scss"]
 })
 export class VizComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
