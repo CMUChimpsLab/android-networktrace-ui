@@ -2,3 +2,15 @@
   height: 70vh;
   width: 100vw;
 }
+
+#viz {
+  min-width: 300px;
+  max-width: 800px;
+  height: 400px;
+  margin: 1em auto;
+  border: 1px solid silver;
+}
+
+#csv {
+  display: none;
+}
