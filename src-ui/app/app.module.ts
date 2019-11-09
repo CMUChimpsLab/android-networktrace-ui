@@ -29,6 +29,7 @@ import { DataService } from './data.service';
 import { MatPaginatorIntlCro } from './paginator-labels.service';
 import { FAQComponent } from './faq/faq.component';
 import { ListComponent } from './list/list.component';
+import { VizComponent } from './viz/viz.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { ListComponent } from './list/list.component';
         ListComponent,
         SearchFilterModalComponent,
         DistributionBarChartComponent,
-        DistributionPieChartComponent
+        DistributionPieChartComponent,
+        VizComponent
     ],
     imports: [
         BrowserModule,
