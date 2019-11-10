@@ -39,7 +39,11 @@ export class VizComponent implements OnInit {
           borderRadius: 5,
           backgroundColor: "rgba(255, 255, 255, 0.7)",
           y: -6,
-          color: "#000"
+          color: "#000",
+          style: {
+            textOutline: "none",
+            fontWeight: "normal"
+          }
         }
       }
     },

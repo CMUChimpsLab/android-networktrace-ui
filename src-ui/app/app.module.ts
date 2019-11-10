@@ -32,6 +32,7 @@ import { MatPaginatorIntlCro } from "./paginator-labels.service";
 import { FAQComponent } from "./faq/faq.component";
 import { ListComponent } from "./list/list.component";
 import { VizComponent } from "./viz/viz.component";
+import { HomeGraphComponent } from './home-graph/home-graph.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { VizComponent } from "./viz/viz.component";
     SearchFilterModalComponent,
     DistributionBarChartComponent,
     DistributionPieChartComponent,
-    VizComponent
+    VizComponent,
+    HomeGraphComponent
   ],
   imports: [
     BrowserModule,

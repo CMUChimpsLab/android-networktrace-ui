@@ -1,0 +1,74 @@
+#graph-container {
+  height: 100vh;
+}
+
+.g-column {
+  margin-top: 20vh;
+}
+
+.g-app {
+  width: 80px;
+  height: 80px;
+  background: #50abf1;
+  margin: 70px auto;
+  color: white;
+}
+
+.g-app-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 12px;
+}
+
+.g-app-icon {
+  font-size: 25px;
+}
+
+.centered {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.g-cloud {
+  color: white;
+  position: relative;
+  text-align: center;
+  width: 150px;
+  margin: 0 auto 70px auto;
+  font-size: 15px;
+  line-height: 14px;
+}
+
+.g-data-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #eaeaea;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.g-data-icon i {
+  font-size: 25px;
+  top: 10px;
+  position: relative;
+}
+
+.g-data {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+  margin-right: 30px;
+}
+
+.g-data-text {
+  display: inline-block;
+  font-size: 11px;
+  width: 130px;
+}
