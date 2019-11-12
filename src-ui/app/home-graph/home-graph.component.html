@@ -2,29 +2,30 @@
   <!-- <p>
     viz works!
   </p> -->
-  <div class="container">
+  <div class="row">
     <div class="col-sm-3 g-column">
       <div class="g-app">
+        <p class="g-app-container" id="app-twitter">
+          <i class="fab fa-twitter g-app-icon"></i><br />Twitter
+        </p>
+      </div>
+      <div class="g-app" id="app-fb">
         <p class="g-app-container">
           <i class="fab fa-facebook-f g-app-icon"></i><br />Facebook
         </p>
       </div>
+
       <div class="g-app">
-        <p class="g-app-container">
-          <i class="fab fa-twitter g-app-icon"></i><br />Twitter
-        </p>
-      </div>
-      <div class="g-app">
-        <p class="g-app-container">
+        <p class="g-app-container" id="app-google">
           <i class="fab fa-google g-app-icon"></i><br />Google
         </p>
       </div>
       <div class="g-app">
-        <p class="g-app-container">
+        <p class="g-app-container" id="app-youtube">
           <i class="fab fa-youtube g-app-icon"></i><br />Youtube
         </p>
       </div>
-      <div class="g-app">
+      <div class="g-app" id="app-tiktok">
         <p class="g-app-container"><br />Tik Tok</p>
       </div>
     </div>
@@ -37,7 +38,7 @@
         <div class="g-data-icon">
           <i class="fas fa-mobile-alt"></i>
         </div>
-        <p class="g-data-text">twitter.com</p>
+        <p class="g-data-text" id="app-data-1">twitter.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
@@ -46,25 +47,25 @@
         <div class="g-data-icon">
           <i class="fas fa-mobile-alt"></i>
         </div>
-        <p class="g-data-text">h.facebook.com</p>
+        <p class="g-data-text" id="app-data-2">h.facebook.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-mobile-alt"></i>
         </div>
-        <p class="g-data-text">b-graph.facebook.com</p>
+        <p class="g-data-text" id="app-data-3">b-graph.facebook.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">m.facebook.com</p>
+        <p class="g-data-text" id="app-data-4">m.facebook.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-mobile-alt"></i>
         </div>
-        <p class="g-data-text">accounts.google.com</p>
+        <p class="g-data-text" id="app-data-5">accounts.google.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
@@ -76,19 +77,19 @@
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">google.com</p>
+        <p class="g-data-text" id="app-data-6">google.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">googletagmanager.com</p>
+        <p class="g-data-text" id="app-data-7">googletagmanager.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">googleleadservices.com (AD)</p>
+        <p class="g-data-text" id="app-data-8">googleleadservices.com (AD)</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
@@ -100,13 +101,13 @@
         <div class="g-data-icon">
           <i class="fas fa-signal"></i>
         </div>
-        <p class="g-data-text"></p>
+        <p class="g-data-text" id="app-data-9">google.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">googleapis.com</p>
+        <p class="g-data-text" id="app-data-10">googleapis.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
@@ -115,44 +116,48 @@
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">settings.crashlytics.com</p>
+        <p class="g-data-text" id="app-data-11">settings.crashlytics.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">zhiliaoapp.com</p>
+        <p class="g-data-text" id="app-data-12">zhiliaoapp.com</p>
       </div>
       <div class="g-data">
         <div class="g-data-icon">
           <i class="fas fa-globe"></i>
         </div>
-        <p class="g-data-text">easemob.com</p>
+        <p class="g-data-text" id="app-data-13">easemob.com</p>
       </div>
     </div>
     <div class="col-sm-4 g-column">
-      <div class="g-cloud">
-        <img src="../../assets/cloud.svg" style="width:100%;" />
-        <div class="centered">Facebook</div>
-      </div>
-      <div class="g-cloud">
+      <div class="g-cloud" id="cs-twitter">
         <img src="../../assets/cloud.svg" style="width:100%;" />
         <div class="centered">Twitter</div>
       </div>
-      <div class="g-cloud">
+      <div class="g-cloud" id="cs-fb">
+        <img src="../../assets/cloud.svg" style="width:100%;" />
+        <div class="centered">Facebook</div>
+      </div>
+      <div class="g-cloud" id="cs-google">
         <img src="../../assets/cloud.svg" style="width:100%;" />
         <div class="centered">Google</div>
       </div>
-      <div class="g-cloud">
+      <div class="g-cloud" id="cs-tps">
         <img src="../../assets/cloud.svg" style="width:100%;" />
         <div class="centered">Third Party Services</div>
       </div>
-      <div class="g-cloud">
+      <div class="g-cloud" id="cs-unknown">
         <img src="../../assets/cloud.svg" style="width:100%;" />
         <div class="centered">Unknown</div>
       </div>
     </div>
   </div>
-  <div id="test1">test1</div>
-  <div id="test2">test2</div>
+  <!-- end of row  -->
+  <!-- <div class="row">
+    <div class="col-sm-4" id="test1" [innerHTML]="testData"></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" id="test2">test2</div>
+  </div> -->
 </div>

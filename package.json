@@ -42,6 +42,7 @@
     "helmet": "^3.21.2",
     "highcharts": "7.1.1",
     "highcharts-angular": "2.4.0",
+    "leader-line": "^1.0.5",
     "lite-server": "2.4.0",
     "lodash": "^4.17.15",
     "mongodb": "3.2.3",

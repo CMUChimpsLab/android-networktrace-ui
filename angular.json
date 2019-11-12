@@ -24,7 +24,10 @@
             "tsConfig": "src-ui/tsconfig.app.json",
             "assets": ["src-ui/favicon.ico", "src-ui/assets"],
             "styles": ["src-ui/styles.scss"],
-            "scripts": ["src-ui/vendors/palette.js"]
+            "scripts": [
+              "src-ui/vendors/palette.js",
+              "./node_modules/leader-line/leader-line.min.js"
+            ]
           },
           "configurations": {
             "production": {
