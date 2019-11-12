@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from "@angular/core";
 
 @Component({
-  selector: 'app-home-graph',
-  templateUrl: './home-graph.component.html',
-  styleUrls: ['./home-graph.component.scss']
+  selector: "app-home-graph",
+  templateUrl: "./home-graph.component.html",
+  styleUrls: ["./home-graph.component.scss"]
 })
 export class HomeGraphComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
