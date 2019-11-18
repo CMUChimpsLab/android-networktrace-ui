@@ -45,16 +45,12 @@ export class HomeGraphComponent implements OnInit {
       ["app-data-12", "cs-unknown"],
       ["app-data-13", "cs-unknown"]
     ];
-    const pairs_right = [];
     pairs_left.forEach(pair => {
       // var v1 = document.getElementById(pair[0]);
       // var v2 = document.getElementById(pair[1]);
       // var line = new LeaderLine(v1, v2, { color: "#eaeaea", size: 2 });
       this.addLine(pair[0], pair[1]);
     });
-    // pairs_right.forEach(pair => {
-    //   this.addLine(pair[0], pair[1]);
-    // });
   }
 
   // v1.onmouseenter = function() {

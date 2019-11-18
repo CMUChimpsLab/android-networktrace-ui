@@ -33,6 +33,7 @@ import { FAQComponent } from "./faq/faq.component";
 import { ListComponent } from "./list/list.component";
 import { VizComponent } from "./viz/viz.component";
 import { HomeGraphComponent } from './home-graph/home-graph.component';
+import { TermsComponent } from './terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HomeGraphComponent } from './home-graph/home-graph.component';
     DistributionBarChartComponent,
     DistributionPieChartComponent,
     VizComponent,
-    HomeGraphComponent
+    HomeGraphComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+.term-box {
+  display: inline-block;
+  width: 20%;
+  background: white;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.term-box i {
+  padding-right: 4px;
+}
+
+.term-box p {
+  font-size: 12px;
+}
+
+.term-box h3 {
+  font-size: 14px;
+}
+
+.term-row {
+  width: 90%;
+  margin: auto;
+}
+
+.term-row-table {
+  border: 1px solid grey;
+}
+
+.term-container {
+  margin-top: 10vh;
+}
