@@ -46,17 +46,7 @@ export class HomeGraphComponent implements OnInit {
       ["app-data-13", "cs-unknown"]
     ];
     pairs_left.forEach(pair => {
-      // var v1 = document.getElementById(pair[0]);
-      // var v2 = document.getElementById(pair[1]);
-      // var line = new LeaderLine(v1, v2, { color: "#eaeaea", size: 2 });
       this.addLine(pair[0], pair[1]);
     });
   }
-
-  // v1.onmouseenter = function() {
-  //   line.color = "#50abf1";
-  // };
-  // v1.onmouseleave = function() {
-  //   line.color = "#eaeaea";
-  // };
 }

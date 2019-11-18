@@ -23,12 +23,15 @@
           border-bottom: 1px solid rgba($color: #000000, $alpha: 0.075);
         }
         .question {
-          font-size: x-large;
+          // font-size: x-large;
+          font-weight: 400;
+          font-size: 20px;
           margin: 0;
         }
         .answer {
-          font-size: medium;
+          font-size: 15px;
           margin: 10px 0 0 0;
+          font-weight: 300;
         }
       }
     }
