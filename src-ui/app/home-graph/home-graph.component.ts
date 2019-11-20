@@ -10,6 +10,8 @@ declare let LeaderLine: any;
 export class HomeGraphComponent implements OnInit {
   constructor() {}
 
+  isShown: boolean = false; // hidden by default
+
   addLine(id1, id2) {
     var v1 = document.getElementById(id1);
     var v2 = document.getElementById(id2);
@@ -17,6 +19,7 @@ export class HomeGraphComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isShown = true;
     const pairs_left = [
       ["app-twitter", "app-data-1"],
       ["app-twitter", "app-data-11"],

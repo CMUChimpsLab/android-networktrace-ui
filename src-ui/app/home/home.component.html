@@ -15,8 +15,16 @@
       </div>
     </div>
   </div>
+  <div class="home-description-container">
+    <h1>Where does my data go?</h1>
+    <p>
+      In this data visualization, we want to show the users what sort of network
+      activity is being carried out by their apps. We present queryable data
+      visualizations of 'where' and 'why' data is being sent.
+    </p>
+  </div>
   <app-terms></app-terms>
-  <app-home-graph></app-home-graph>
+  <app-home-graph ng-show="windowLoaded == true"></app-home-graph>
   <div class="home-content">
     <div class="container p-0">
       <div class="results-wrapper">

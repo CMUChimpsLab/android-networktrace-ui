@@ -1,148 +1,330 @@
 <div class="search-container">
-    <div class="search-header">
-        <div class="container flex-content noPaddingBottom" [attr.type]="currentTypeDetails">
-            <div class="flex-content-left search-details" *ngIf="!showTypeDetails">
-                <ng-container *ngIf="currentTypeDetails === 'plain-search'">
-                    <label>Showing data for all Apps</label>
-                </ng-container>
-                <p *ngFor="let itemGroup of queryParamsView">
-                    <strong>{{itemGroup.label}}</strong>
-                    <ng-container *ngIf="itemGroup.id === 'hosts' || itemGroup.id === 'categories' || itemGroup.id === 'purposes'">
-                        <span (click)="removeSearchParam(itemGroup.id, item)" class="search-item" *ngFor="let item of itemGroup.items">{{item}}</span>
-                    </ng-container>
-                    <ng-container *ngIf="itemGroup.id === 'types'">
-                        <span (click)="removeSearchParam(itemGroup.id, item)" class="search-item" *ngFor="let item of itemGroup.items">{{item.label}}</span>
-                    </ng-container>
-                </p>
-            </div>
-            <div class="flex-content-left type-details" *ngIf="showTypeDetails">
-                <ng-container *ngIf="currentTypeDetails === 'who'">
-                    <img [attr.src]="appDetails?.icon" />
-                    <div class="type-details-specifics">
-                        <label>What data is <span>sent</span> by <strong>{{appDetails?.title}}</strong> ?</label>
-                        <p>{{appDetails?.summary}}</p>
-                    </div>
-                </ng-container>
-                <ng-container *ngIf="currentTypeDetails === 'where' || currentTypeDetails === 'group'">
-                    <img [attr.src]="hostDetails?.icon" />
-                    <div class="type-details-specifics">
-                        <label class="who_company" *ngIf="hostDetails?.who_company"><span class="not-colored">{{hostDetails?.who_company}}</span></label>
-                        <label *ngIf="currentTypeDetails === 'where'" >What data is <span>collected</span> by
-                            <strong >{{hostDetails?.host}} </strong>?
-                        </label>
-                        <label *ngIf="currentTypeDetails === 'group'" >What data are <span>collected</span> by
-                            <strong > its services </strong>?
-                        </label>
-                        <p>{{hostDetails?.wiki_company}}</p>
-                    </div>
-                </ng-container>
-            </div>
-            <div class="flex-content-right">
-                <button mat-raised-button *ngIf="showPurposeDistrbution" color="primary"
-                    (click)="openDistributionChartForPie()">Purpose Distribution</button>
-                <button mat-raised-button *ngIf="showCategoryDistribution" color="primary"
-                    (click)="openDistributionChartForBar()">Category-wise Distribution</button>
-            </div>
-        </div>
-        <div class="container flex-content statistics-item-holder"
-            *ngIf="statistics.length > 0">
-            <div class="statistics-item" *ngFor="let stat of statistics">
-                <label class="lower">{{stat.key}}</label>
-                <label class="upper">{{stat.value}}</label>
-            </div>
-        </div>
+  <div class="search-header">
+    <div
+      class="container flex-content noPaddingBottom"
+      [attr.type]="currentTypeDetails"
+    >
+      <div class="flex-content-left search-details" *ngIf="!showTypeDetails">
+        <ng-container *ngIf="currentTypeDetails === 'plain-search'">
+          <label>Showing data for all Apps</label>
+        </ng-container>
+        <p *ngFor="let itemGroup of queryParamsView">
+          <strong>{{ itemGroup.label }}</strong>
+          <ng-container
+            *ngIf="
+              itemGroup.id === 'hosts' ||
+              itemGroup.id === 'categories' ||
+              itemGroup.id === 'purposes'
+            "
+          >
+            <span
+              (click)="removeSearchParam(itemGroup.id, item)"
+              class="search-item"
+              *ngFor="let item of itemGroup.items"
+              >{{ item }}</span
+            >
+          </ng-container>
+          <ng-container *ngIf="itemGroup.id === 'types'">
+            <span
+              (click)="removeSearchParam(itemGroup.id, item)"
+              class="search-item"
+              *ngFor="let item of itemGroup.items"
+              >{{ item.label }}</span
+            >
+          </ng-container>
+        </p>
+      </div>
+      <!-- ===================== individual app page ==================== -->
+      <div class="flex-content-left type-details" *ngIf="showTypeDetails">
+        <ng-container *ngIf="currentTypeDetails === 'who'">
+          <img [attr.src]="appDetails?.icon" />
+          <div class="type-details-specifics">
+            <label>{{ appDetails?.title }}</label>
+            <p>{{ appDetails?.summary }}</p>
+          </div>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            currentTypeDetails === 'where' || currentTypeDetails === 'group'
+          "
+        >
+          <img [attr.src]="hostDetails?.icon" />
+          <div class="type-details-specifics">
+            <label class="who_company" *ngIf="hostDetails?.who_company"
+              ><span class="not-colored">{{
+                hostDetails?.who_company
+              }}</span></label
+            >
+            <label *ngIf="currentTypeDetails === 'where'"
+              >What data is <span>collected</span> by
+              <strong>{{ hostDetails?.host }} </strong>?
+            </label>
+            <label *ngIf="currentTypeDetails === 'group'"
+              >What data are <span>collected</span> by
+              <strong> its services </strong>?
+            </label>
+            <p>{{ hostDetails?.wiki_company }}</p>
+          </div>
+        </ng-container>
+      </div>
+      <!-- <div class="flex-content-right">
+        <button
+          mat-raised-button
+          *ngIf="showPurposeDistrbution"
+          color="primary"
+          (click)="openDistributionChartForPie()"
+        >
+          Purpose Distribution
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="showCategoryDistribution"
+          color="primary"
+          (click)="openDistributionChartForBar()"
+        >
+          Category-wise Distribution
+        </button>
+      </div> -->
     </div>
-    <div class="search-content">
-        <div class="container position-relative">
-            <div class="results-header" style="z-index: 2;" *ngIf="showGroupControl">
-                <div class="results-group-toggle">
-                    <mat-menu #appMenu="matMenu">
-                        <button mat-menu-item *ngIf="currentTypeDetails !== 'who'">Who</button>
-                        <button mat-menu-item>What</button>
-                        <button mat-menu-item>Where</button>
-                        <button mat-menu-item>Why</button>
-                    </mat-menu>
-                    <label>Group By: </label><button mat-stroked-button
-                        [matMenuTriggerFor]="appMenu">{{groupedByColumn}} <i class="material-icons"> arrow_drop_down
-                        </i></button>
-                </div>
+    <ng-container><app-terms></app-terms></ng-container>
+    <div
+      class="container flex-content statistics-item-holder"
+      *ngIf="statistics.length > 0"
+    >
+      <div class="statistics-item" *ngFor="let stat of statistics">
+        <label class="lower">{{ stat.key }}</label>
+        <label class="upper">{{ stat.value }}</label>
+      </div>
+    </div>
+  </div>
+  <!-- ===================== individual app header ==================== -->
+  <div class="search-content">
+    <div class="container position-relative">
+      <div class="results-header" style="z-index: 2;" *ngIf="showGroupControl">
+        <div class="results-group-toggle">
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item *ngIf="currentTypeDetails !== 'who'">
+              Who
+            </button>
+            <button mat-menu-item>What</button>
+            <button mat-menu-item>Where</button>
+            <button mat-menu-item>Why</button>
+          </mat-menu>
+          <label>Group By: </label
+          ><button mat-stroked-button [matMenuTriggerFor]="appMenu">
+            {{ groupedByColumn }}
+            <i class="material-icons"> arrow_drop_down </i>
+          </button>
+        </div>
+      </div>
+      <div class="results-header mb-0" style="z-index: 1;">
+        <div class="results-header-total">
+          <table>
+            <thead>
+              <tr>
+                <ng-container *ngFor="let col of columnOptions">
+                  <td
+                    *ngIf="col.show"
+                    [ngClass]="col.id"
+                    [class.bigger]="
+                      currentTypeDetails === 'who' ||
+                      currentTypeDetails === 'where'
+                    "
+                    [class.ascending]="activeSorterDirection === 'ASC'"
+                    [class.descending]="activeSorterDirection === 'DESC'"
+                    [class.sorterActive]="activeSorterCol === col.id"
+                    (click)="onColumnClicked(col)"
+                  >
+                    {{ col.name }}
+                  </td>
+                </ng-container>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <!-- ===================== test  ==================== -->
+      <div class="results-wrapper pt-0 pb-0">
+        <div class="results-container">
+          <ng-container *ngFor="let group of rowGroups; let i = index">
+            <div class="results-container-item" *ngIf="group.types.length > 0">
+              <div class="results-container-item-content">
+                <ul>
+                  <ng-container *ngFor="let type of group.types; let j = index">
+                    <li>{{ type }} Data</li>
+                  </ng-container>
+                </ul>
+              </div>
             </div>
-            <div class="results-header mb-0" style="z-index: 1;">
-                <div class="results-header-total">
-                    <table>
-                        <thead>
-                            <tr>
-                                <ng-container *ngFor="let col of columnOptions">
-                                    <td *ngIf="col.show" [ngClass]="col.id"
-                                        [class.bigger]="currentTypeDetails === 'who' || currentTypeDetails === 'where'"
-                                        [class.ascending]="activeSorterDirection === 'ASC'"
-                                        [class.descending]="activeSorterDirection === 'DESC'"
-                                        [class.sorterActive]="activeSorterCol === col.id"
-                                        (click)="onColumnClicked(col)">
-                                        {{col.name}}</td>
-                                </ng-container>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <div class="results-wrapper pt-0 pb-0">
-                <div class="results-container">
-                    <ng-container *ngFor="let group of rowGroups; let i = index;">
-                        <div class="results-container-item" *ngIf="group.rows.length > 0">
-                            <div class="results-container-item-content" [class.more]="group.rows.length > 5 && false">
-                                <table>
-                                    <tbody>
-                                        <ng-container *ngFor="let row of group.rows; let j = index;">
-                                            <!--*ngIf="j < 5 || (group.expanded && j >= 5) || true"-->
-                                            <tr>
-                                                <td class="logo" *ngIf="currentTypeDetails !== 'who'">
-                                                    <img [attr.src]="row.icon" />
-                                                </td>
-                                                <td class="who actionable" [routerLink]="['/results/who/' + row.app]"
-                                                    *ngIf="currentTypeDetails !== 'who'">
-                                                    <div class="result-item-value"><span>{{row.title}}</span> sends </div>
-                                                </td>
-                                                <td class="what actionable" [routerLink]="['/results']" [queryParams]="{types: [row.type]}" [matTooltip]="row.typeInfo?.description" matTooltipPosition="above" matTooltipClass="phone-data-tooltip"
-                                                    [class.bigger]="currentTypeDetails === 'who' || currentTypeDetails === 'where'">
-                                                    <div class="result-item-value"><i
-                                                            [ngClass]="row.typeInfo.icon"></i><span>{{row.typeInfo?.label}}
-                                                            data</span>
-                                                    </div>
-                                                </td>
-                                                <td class="where actionable"
-                                                    [routerLink]="['/results/where/' + row.host]"
-                                                    *ngIf="currentTypeDetails !== 'where'">
-                                                    <div class="result-item-value"><span>to {{row.host}}</span>
-                                                    </div>
-                                                </td>
-                                                <td class="why actionable" [routerLink]="['/results']" [queryParams]="{purposes: [row.purpose]}">
-                                                    <div class="result-item-value">
-                                                        <span>{{row.purposeInfo?.label}}</span>
-                                                        <span *ngIf="false"><br /><span
-                                                                class="uncommon-tag">UNCOMMON</span></span></div>
-                                                </td>
-                                            </tr>
-                                        </ng-container>
-                                    </tbody>
-                                </table>
-                                <div class="more-rows-tag" *ngIf="group.rows.length > 5 && showExpander && false"
-                                    (click)="group.expanded = !group.expanded">
-                                    <i class="material-icons">more_horiz</i>
-                                </div>
-                            </div>
-                        </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- ===================== individual app result ==================== -->
+      <div class="results-wrapper pt-0 pb-0">
+        <div class="results-container">
+          <ng-container *ngFor="let group of rowGroups; let i = index">
+            <div class="results-container-item" *ngIf="group.rows.length > 0">
+              <div
+                class="results-container-item-content"
+                [class.more]="group.rows.length > 5 && false"
+              >
+                <table>
+                  <tbody>
+                    <ng-container *ngFor="let row of group.rows; let j = index">
+                      <tr>
+                        <td
+                          class="what actionable"
+                          [routerLink]="['/results']"
+                          [queryParams]="{ types: [row.type] }"
+                          [matTooltip]="row.typeInfo?.description"
+                          matTooltipPosition="above"
+                          matTooltipClass="phone-data-tooltip"
+                          [class.bigger]="
+                            currentTypeDetails === 'who' ||
+                            currentTypeDetails === 'where'
+                          "
+                        >
+                          <div class="result-item-value">
+                            <i [ngClass]="row.typeInfo.icon"></i
+                            ><span>{{ row.typeInfo?.label }} data</span>
+                          </div>
+                        </td>
+                        <td
+                          class="where actionable"
+                          [routerLink]="['/results/where/' + row.host]"
+                          *ngIf="currentTypeDetails !== 'where'"
+                        >
+                          <div class="result-item-value">
+                            <span>to {{ row.host }}</span>
+                          </div>
+                        </td>
+                        <td
+                          class="why actionable"
+                          [routerLink]="['/results']"
+                          [queryParams]="{ purposes: [row.purpose] }"
+                        >
+                          <div class="result-item-value">
+                            <span>{{ row.purposeInfo?.label }}</span>
+                            <span *ngIf="false"
+                              ><br /><span class="uncommon-tag"
+                                >UNCOMMON</span
+                              ></span
+                            >
+                          </div>
+                        </td>
+                      </tr>
                     </ng-container>
+                  </tbody>
+                </table>
+                <div
+                  class="more-rows-tag"
+                  *ngIf="group.rows.length > 5 && showExpander && false"
+                  (click)="group.expanded = !group.expanded"
+                >
+                  <i class="material-icons">more_horiz</i>
                 </div>
+              </div>
             </div>
+          </ng-container>
         </div>
-    </div>
-    <div class="search-footer" *ngIf="showPaginator">
-        <div class="container position-relative p-0">
-            <label class="footer-label" *ngIf="false">Total {{totalSize}} {{entityLabel}}</label>
-            <mat-paginator [length]="totalSize" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-                (page)="onPageEvent($event)">
-            </mat-paginator>
+      </div>
+
+      <!-- ================ individual app result (copy) ==================== -->
+      <div class="results-wrapper pt-0 pb-0">
+        <div class="results-container">
+          <ng-container *ngFor="let group of rowGroups; let i = index">
+            <div class="results-container-item" *ngIf="group.rows.length > 0">
+              <div
+                class="results-container-item-content"
+                [class.more]="group.rows.length > 5 && false"
+              >
+                <table>
+                  <tbody>
+                    <ng-container *ngFor="let row of group.rows; let j = index">
+                      <tr>
+                        <td class="logo" *ngIf="currentTypeDetails !== 'who'">
+                          <img [attr.src]="row.icon" />
+                        </td>
+                        <td
+                          class="who actionable"
+                          [routerLink]="['/results/who/' + row.app]"
+                          *ngIf="currentTypeDetails !== 'who'"
+                        >
+                          <div class="result-item-value">
+                            <span>{{ row.title }}</span> sends
+                          </div>
+                        </td>
+                        <td
+                          class="what actionable"
+                          [routerLink]="['/results']"
+                          [queryParams]="{ types: [row.type] }"
+                          [matTooltip]="row.typeInfo?.description"
+                          matTooltipPosition="above"
+                          matTooltipClass="phone-data-tooltip"
+                          [class.bigger]="
+                            currentTypeDetails === 'who' ||
+                            currentTypeDetails === 'where'
+                          "
+                        >
+                          <div class="result-item-value">
+                            <i [ngClass]="row.typeInfo.icon"></i
+                            ><span>{{ row.typeInfo?.label }} data</span>
+                          </div>
+                        </td>
+                        <td
+                          class="where actionable"
+                          [routerLink]="['/results/where/' + row.host]"
+                          *ngIf="currentTypeDetails !== 'where'"
+                        >
+                          <div class="result-item-value">
+                            <span>to {{ row.host }}</span>
+                          </div>
+                        </td>
+                        <td
+                          class="why actionable"
+                          [routerLink]="['/results']"
+                          [queryParams]="{ purposes: [row.purpose] }"
+                        >
+                          <div class="result-item-value">
+                            <span>{{ row.purposeInfo?.label }}</span>
+                            <span *ngIf="false"
+                              ><br /><span class="uncommon-tag"
+                                >UNCOMMON</span
+                              ></span
+                            >
+                          </div>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+                <div
+                  class="more-rows-tag"
+                  *ngIf="group.rows.length > 5 && showExpander && false"
+                  (click)="group.expanded = !group.expanded"
+                >
+                  <i class="material-icons">more_horiz</i>
+                </div>
+              </div>
+            </div>
+          </ng-container>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="search-footer" *ngIf="showPaginator">
+    <div class="container position-relative p-0">
+      <label class="footer-label" *ngIf="false"
+        >Total {{ totalSize }} {{ entityLabel }}</label
+      >
+      <mat-paginator
+        [length]="totalSize"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageEvent($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
 </div>
