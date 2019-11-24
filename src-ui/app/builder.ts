@@ -14,6 +14,7 @@ export function BuildRowGroups(data: Array<any>, forceExpand = false) {
   apps.forEach(item => {
     const rows = [];
     const g = groups[item.app];
+
     (g as Array<any>).forEach(g_data => {
       const relinfo = g_data.relinfo;
       if (!_.isEmpty(relinfo)) {
@@ -35,11 +36,41 @@ export function BuildRowGroups(data: Array<any>, forceExpand = false) {
       }
     });
 
-    const typeNames = _.uniq(_.map(rowTypes, e => e.label));
+    // const typeNames = _.uniq(_.map(rowTypes, e => e.label));
+    const typeNames = _.uniqBy(
+      _.map(rowTypes, function(e) {
+        return { name: e.label, icon: e.icon };
+      }),
+      function(e) {
+        return e.name;
+      }
+    );
+
+    const typeMap = [];
+    typeNames.forEach(type => {
+      typeMap.push({
+        key: type.name,
+        icon: type.icon,
+        rData: []
+      });
+    });
+
+    _.forEach(rows, r => {
+      const rInfoType = r.typeInfo.label == null ? "" : r.typeInfo.label;
+      _.forEach(typeMap, t => {
+        if (t.key == rInfoType) {
+          t.rData.push(r);
+        }
+      });
+    });
+
+    console.log(typeMap);
+
     rowGroups.push({
       app: item.app,
       rows: rows,
       types: typeNames,
+      typeMap: typeMap,
       expanded: forceExpand
     });
   });
