@@ -1,15 +1,15 @@
 <div class="home-container">
   <div class="home-header2">
-    <!-- <div class="header-back">
-      <img src="../../assets/phone2.svg" alt="Phone Apps" />
-    </div> -->
-    <div class="header-front">
+    <div class="header-front-left">
       <h1>Who knows What about us<br />and Why?</h1>
       <p>
         Many smartphone apps gather and send lots of sensitive data to various
         third parties around the Internet. <br />
         However, it’s hard to know exactly what apps are sending out what data
         and why.
+        <button [routerLink]="['/results']">
+          Where does my data go?
+        </button>
       </p>
     </div>
     <!-- <div class="container">
@@ -26,6 +26,20 @@
         </button>
       </div>
     </div> -->
+  </div>
+  <div class="home-header3">
+    <div class="header-front-right">
+      <h1>Collecting Data</h1>
+      <p>
+        As a team of researchers at Carnegie Mellon University, we collected
+        network traces from thousands of apps, and analyzed them into categories
+        of data types.
+        <br />
+        In this website we present data visualizations showing ‘who’ collects
+        our data, ‘what’ data they collect, 'where' do they send our data to,
+        and 'why' the data is being sent.
+      </p>
+    </div>
   </div>
   <div class="home-description-container">
     <h1>Where does my data go?</h1>

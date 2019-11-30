@@ -7,6 +7,33 @@
     margin: 10vh auto 0 auto;
   }
 
+  .home-header3 {
+    position: relative;
+    height: 500px;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/phone1.svg");
+    margin: 100px auto;
+
+    .header-front-right {
+      position: absolute;
+      top: 25%;
+      right: 10%;
+      width: 35vw;
+
+      h1 {
+        font-size: 2.5em;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 1.1em;
+        margin: 30px auto;
+        font-weight: 400;
+      }
+    }
+  }
+
   .home-header2 {
     color: rgba($color: #fff, $alpha: 0.8);
     position: relative;
@@ -16,7 +43,7 @@
     background-repeat: no-repeat;
     background-image: url("../../assets/phone3.svg");
 
-    .header-front {
+    .header-front-left {
       color: black;
       position: absolute;
       top: 30%;
@@ -33,6 +60,14 @@
         font-size: 1.1em;
         margin: 30px auto;
         font-weight: 400;
+      }
+
+      button {
+        margin-top: 30px;
+        border: none;
+        background: rgba($accent, 1);
+        color: white;
+        padding: 8px 15px;
       }
     }
 
