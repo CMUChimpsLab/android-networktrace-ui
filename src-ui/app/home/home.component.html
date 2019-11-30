@@ -1,7 +1,11 @@
 <div class="home-container">
   <div class="home-header2">
     <div class="header-front-left">
-      <h1>Who knows What about us<br />and Why?</h1>
+      <h1>
+        <span class="header-accent">Who</span> knows
+        <span class="header-accent">What</span> about us<br />and
+        <span class="header-accent">Why?</span>
+      </h1>
       <p>
         Many smartphone apps gather and send lots of sensitive data to various
         third parties around the Internet. <br />
@@ -12,6 +16,7 @@
         </button>
       </p>
     </div>
+
     <!-- <div class="container">
       <div class="up">
         <p>Analysing data shared by Android Apps</p>
@@ -27,6 +32,7 @@
       </div>
     </div> -->
   </div>
+  <!-- header 2 -->
   <div class="home-header3">
     <div class="header-front-right">
       <h1>Collecting Data</h1>
@@ -41,21 +47,36 @@
       </p>
     </div>
   </div>
-  <div class="home-description-container">
+  <!-- header 3 -->
+  <div>
+    <div class="top-queries-wrapper">
+      <h1>Top Queries</h1>
+      <div class="top-queries-holder">
+        <a (click)="openLink(item)" *ngFor="let item of queries">{{
+          item.label
+        }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-description-container" id="data-viz">
     <h1>Where does my data go?</h1>
     <p>
-      In this data visualization, we want to show the users what sort of network
-      activity is being carried out by their apps. We present queryable data
-      visualizations of 'where' and 'why' data is being sent.
+      There are ﬁve data types that apps collect from us, they are device,
+      network, general ID, account, & location data. In this visualization we
+      show which of the ﬁve data types apps collect the most. Click on an app to
+      see where they send the data to, and click on a cloud to expand its
+      information.
     </p>
   </div>
-  <app-terms></app-terms>
+  <!-- <app-terms></app-terms> -->
   <app-home-graph ng-show="windowLoaded == true"></app-home-graph>
-  <div class="home-content">
+
+  <div class="home-content" *ngIf="showOriginal">
     <div class="container p-0">
       <div class="results-wrapper">
         <div class="top-queries-wrapper">
-          <label>Top Queries</label>
+          <h1>Top Queries</h1>
           <div class="top-queries-holder">
             <a (click)="openLink(item)" *ngFor="let item of queries">{{
               item.label
@@ -191,7 +212,7 @@
       </div>
     </div>
   </div>
-  <div class="home-header">
+  <div class="home-header" *ngIf="showOriginal">
     <div class="container" style="padding-bottom: 60px;">
       <div class="search-wrapper">
         <button [routerLink]="['/results']" mat-raised-button>

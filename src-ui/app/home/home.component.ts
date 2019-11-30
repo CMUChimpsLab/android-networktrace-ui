@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  showOriginal = false;
+
   itemsThree = [1, 2, 3];
   itemsFive = [1, 2, 3, 4, 5];
   params = {
