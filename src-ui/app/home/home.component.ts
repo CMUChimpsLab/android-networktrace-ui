@@ -43,6 +43,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         group: ["google"]
       },
       groupNavigation: true
+    },
+    {
+      label: "What kinds of data is collected by TikTok? ",
+      params: {
+        group: ["tiktok"]
+      },
+      groupNavigation: true
     }
   ];
   rowGroups = [];
