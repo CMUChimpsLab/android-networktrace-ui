@@ -25,6 +25,25 @@ export const AppProjection = {
         genre: '$genre'
     }
 };
+export const RelationshipProjection = {
+    "app": 1,
+    "host": 1,
+    "type": 1,
+    "purpose": 1,
+    "appinfo": {
+        title: '$appinfo.title',
+        summary: '$appinfo.summary',
+        icon: '$appinfo.icon',
+        genre: '$appinfo.genre'
+    },
+    "hostinfo": {
+        domain: '$hostinfo.domain',
+        htmlmeta: '$hostinfo.htmlmeta',
+        who_company: '$hostinfo.who_company',
+        wiki_company: '$hostinfo.wiki_company',
+        icon: '$hostinfo.icon',
+    }
+};
 export const AppDetailsProjection = {
     "app": 1,
     "title": 1,

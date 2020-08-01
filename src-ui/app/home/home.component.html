@@ -2,10 +2,13 @@
     <div class="home-header2">
         <div class="container">
             <div class="up">
-                <p>Analysing data shared by Android Apps</p>
+                <p>Who knows What about us and Why ?</p>
             </div>
             <div class="down">
-                <strong>who</strong> . <strong>what</strong> . <strong>where</strong> . <strong>why</strong>
+                <p>Many smartphone apps gather and send us lots of data to various third-party services around the Internet.
+                    However, its hard to knows exactly what apps are sending out what data and why. Here, we show which of the five data types
+                    are collected most by the apps. Browse the site to find where does the data go.
+                </p>
             </div>
             <div class="btn-container">
                 <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
@@ -15,69 +18,20 @@
     <div class="home-content">
         <div class="container p-0">
             <div class="results-wrapper">
+                <label style="text-align: center;font-size: x-large;">Destinations for data sent by some top apps</label>
+                <app-cloud-animation></app-cloud-animation>
+            </div>
+            <div class="results-wrapper">
                 <div class="top-queries-wrapper">
-                    <label>Top Queries</label>
+                    <label style="text-align: center;font-size: x-large;">Top Queries</label>
                     <div class="top-queries-holder">
                         <a (click)="openLink(item)" *ngFor="let item of queries">{{item.label}}</a>
                     </div>
                 </div>
             </div>
             <div class="results-wrapper">
-                <label style="margin-bottom: 45px;">Let's look at some popular apps and what data they send to where and
-                    why</label>
-                <div class="results-container">
-                    <div class="results-container-item" *ngFor="let group of rowGroups; let i = index;">
-                        <div class="results-container-item-content">
-                            <table>
-                                <tbody>
-                                    <ng-container *ngFor="let row of group.rows; let j = index;">
-                                        <tr>
-                                            <td class="logo">
-                                                <img [attr.src]="row.icon" />
-                                            </td>
-                                            <td class="who actionable" [routerLink]="['/results/who/' + row.app]">
-                                                <div class="result-item-value"><span>{{row.title}}</span> sends </div>
-                                            </td>
-                                            <td class="what actionable" [routerLink]="['/results']"
-                                                [queryParams]="{types: [row.type]}"
-                                                [matTooltip]="row.typeInfo?.description" matTooltipPosition="above"
-                                                matTooltipClass="phone-data-tooltip">
-                                                <div class="result-item-value">
-                                                    <i [ngClass]="row.typeInfo.icon"></i><span>{{row.typeInfo?.label}}
-                                                        data</span>
-                                                </div>
-                                            </td>
-                                            <td class="where actionable" [routerLink]="['/results/where/' + row.host]">
-                                                <div class="result-item-value"><span>to {{row.host}}</span>
-                                                </div>
-                                            </td>
-                                            <td class="why actionable" [routerLink]="['/results']"
-                                                [queryParams]="{purposes: [row.purpose]}">
-                                                <div class="result-item-value">
-                                                    <span>{{row.purposeInfo?.label}}</span>
-                                                    <span *ngIf="false"><br /><span
-                                                            class="uncommon-tag">UNCOMMON</span></span></div>
-                                            </td>
-                                        </tr>
-                                    </ng-container>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="results-wrapper" *ngIf="false">
-                <label>How we analyzed the apps ?</label>
-                <ul class="process-steps">
-                    <li [attr.data-index]="i + 1" *ngFor="let item of itemsThree; let i = index;">Lorem ipsum dolor sit
-                        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.</li>
-                </ul>
-            </div>
-            <div class="results-wrapper">
                 <div class="process-bubbles-holder">
-                    <label>Our Process </label>
+                    <label style="text-align: center;font-size: x-large;">Our Process </label>
                     <div class="process-bubbles-wrapper">
                         <div class="process-bubble">
                             <div class="process-num">STEP 1</div>

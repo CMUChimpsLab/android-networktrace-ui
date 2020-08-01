@@ -147,6 +147,7 @@ export class ResultsComponent implements OnInit {
                 this.showPaginator = false;
                 this.dataService.getAppDetails(this.paramId).subscribe(data => {
                     this.appDetails = data;
+                    console.log(data);
                     if (!this.appDetails.title) {
                         this.appDetails.title = this.appDetails.app;
                     }
@@ -212,6 +213,7 @@ export class ResultsComponent implements OnInit {
             case FetchType.WHO: {
                 // tslint:disable-next-line:max-line-length
                 this.dataService.getAppRelationships(this.paramId, this.skip, this.limit).subscribe((data: any) => this.buildRows(data, true));
+                // this.appService.hideLoader();
                 break;
             }
             case FetchType.WHERE: {

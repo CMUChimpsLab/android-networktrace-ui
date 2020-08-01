@@ -8,17 +8,15 @@
     "ui-start": "ng serve",
     "ui-build": "ng build --prod --aot --base-href 'https://cmuchimpslab.github.io/android-networktrace-ui/'",
     "ui-npx": "npx angular-cli-ghpages --dir=docs",
-    "ui-test": "ng test",
     "ui-lint": "ng lint",
     "api-build": "npm run api-build-ts",
-    "api-build-ts": "tsc",
-    "api-list-tsc": "tsc --traceResolution",
+    "api-build-ts": "tsc -p tsconfig.api.json",
+    "api-list-tsc": "tsc -p tsconfig.api.json --traceResolution",
     "api-clean": "rm -rf ./dist-api",
     "api-serve": "node dist-api/server.js",
     "api-start-dev": "nodemon dist-api/server.js",
     "start": "npm run api-serve",
-    "api-test": "jest",
-    "api-watch-ts": "tsc --watch"
+    "api-watch-ts": "tsc -p tsconfig.api.json --watch"
   },
   "private": true,
   "dependencies": {
@@ -46,12 +44,14 @@
     "helmet": "^3.12.1",
     "mongodb": "3.2.3",
     "cors": "2.8.5",
-    "lodash": "4.17.11"
+    "lodash": "4.17.11",
+    "gsap": "3.4.2",
+    "jquery": "3.5.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
-    "@angular/cli": "~6.2.1",
-    "@angular/compiler-cli": "^6.1.0",
+    "@angular/cli": "~7.1.0",
+    "@angular/compiler-cli": "^7.1.0",
     "@angular/language-service": "^6.1.0",
     "@types/compression": "^0.0.36",
     "@types/cors": "2.8.5",
@@ -64,6 +64,6 @@
     "codelyzer": "~4.3.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~3.1.0"
   }
 }

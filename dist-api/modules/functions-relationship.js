@@ -29,23 +29,25 @@ function GetRelationshipsGivenAppList(collection, params, appList) {
         if (_.isFinite(params.skip))
             skip = parseInt(params.skip) || 0;
         if (_.isFinite(params.limit))
-            limit = parseInt(params.limit) || 10;
+            limit = parseInt(params.limit) || 100;
         if (_.isFinite(params.nolimit))
             limit = 100000;
         let AggregateExpressions = [
             {
                 "$match": {
-                    'title': { $ne: null },
                     'app': { $in: appList }
                 }
             },
-            { "$sort": { "title": -1 } },
-            { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingApp },
-            { "$unwind": "$relinfo" },
-            { "$skip": skip || 0 },
-            { "$limit": limit || 10 },
-            { "$project": constants_1.AppProjection }
+            // { "$sort": { "title": -1 } },
+            { "$lookup": constants_1.LookUpExpressionForAppsFromRelationships },
+            { "$lookup": constants_1.LookUpExpressionForHostsFromRelationships },
+            { "$unwind": { path: "$appinfo", preserveNullAndEmptyArrays: true } },
+            { "$unwind": { path: "$hostinfo", preserveNullAndEmptyArrays: true } },
+            { "$skip": skip },
+            { "$limit": limit || 100 },
+            { "$project": constants_1.RelationshipProjection }
         ];
+        console.log(1);
         return collection.aggregate(AggregateExpressions).toArray();
     });
 }
@@ -67,10 +69,11 @@ function GetRelationshipsGivenApp(collection, params, app) {
             { "$sort": { "title": -1 } },
             { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingApp },
             { "$unwind": "$relinfo" },
-            { "$skip": skip || 0 },
+            { "$skip": skip },
             { "$limit": limit || 10 },
             { "$project": constants_1.AppProjection }
         ];
+        console.log(2);
         return collection.aggregate(AggregateExpressions).toArray();
     });
 }
@@ -94,7 +97,7 @@ function GetRelationshipsGivenHost(collection, params, host, count = false) {
                 { "$sort": { "host": -1 } },
                 { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingHost },
                 { "$unwind": "$relinfo" },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 {
                     "$lookup": {
@@ -107,6 +110,7 @@ function GetRelationshipsGivenHost(collection, params, host, count = false) {
                 { "$unwind": "$appinfo" },
                 { "$project": constants_1.HostProjection }
             ];
+            console.log(3);
             return collection.aggregate(AggregateExpressions).toArray();
         }
         else {
@@ -130,6 +134,7 @@ function GetRelationshipsGivenHost(collection, params, host, count = false) {
                 { "$unwind": "$appinfo" },
                 { "$count": "count" },
             ];
+            console.log(4);
             return collection.aggregate(AggregateExpressions).toArray();
         }
     });
@@ -157,21 +162,22 @@ function GetRelationshipsGivenAppAndHost(collection, params, app, host) {
             { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingApp },
             { "$unwind": "$relinfo" },
             ...HostMatchExpression,
-            { "$skip": skip || 0 },
+            { "$skip": skip },
             { "$limit": limit || 10 },
             { "$project": constants_1.AppProjection }
         ];
+        console.log(4);
         return collection.aggregate(AggregateExpressions).toArray();
     });
 }
 function GetRelationshipsGivenNothing(client, params) {
     return __awaiter(this, void 0, void 0, function* () {
-        let skip = 0, limit = 0, categories = [], types = [], purposes = [], hosts = [], apps = [];
-        if (_.isFinite(params.skip))
+        let skip = 0, limit = 10, categories = [], types = [], purposes = [], hosts = [], apps = [];
+        if (!_.isEmpty(params.skip))
             skip = parseInt(params.skip) || 0;
-        if (_.isFinite(params.limit))
+        if (!_.isEmpty(params.limit))
             limit = parseInt(params.limit) || 10;
-        if (_.isFinite(params.nolimit))
+        if (!_.isEmpty(params.nolimit))
             limit = 100000;
         if (!_.isEmpty(params.categories))
             categories = params.categories;
@@ -183,6 +189,7 @@ function GetRelationshipsGivenNothing(client, params) {
             hosts = params.hosts;
         if (!_.isEmpty(params.apps))
             apps = params.apps;
+        console.log(!_.isEmpty(params.skip), skip);
         if (_.isEmpty(params.categories) &&
             _.isEmpty(params.types) &&
             _.isEmpty(params.purposes) &&
@@ -195,12 +202,13 @@ function GetRelationshipsGivenNothing(client, params) {
                     }
                 },
                 { "$sort": { "title": -1 } },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingApp },
                 { "$unwind": "$relinfo" },
                 { "$project": constants_1.AppProjection }
             ];
+            console.log(5);
             return constants_1.GetAppsCollection(client).aggregate(AggregateExpressions).toArray();
         }
         else if (!_.isEmpty(params.categories) &&
@@ -216,12 +224,13 @@ function GetRelationshipsGivenNothing(client, params) {
                 {
                     "$match": Object.assign({}, {}, ...matchExpressions)
                 },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingApp },
                 { "$unwind": "$relinfo" },
                 { "$project": constants_1.AppProjection }
             ];
+            console.log(6, skip);
             return constants_1.GetAppsCollection(client).aggregate(AggregateExpressions).toArray();
         }
         else if (_.isEmpty(params.categories) &&
@@ -239,7 +248,7 @@ function GetRelationshipsGivenNothing(client, params) {
                 {
                     "$match": Object.assign({}, {}, ...matchExpressions)
                 },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 { "$lookup": constants_1.LookUpExpressionForAppsFromRelationships },
                 { "$unwind": "$appinfo" },
@@ -248,6 +257,7 @@ function GetRelationshipsGivenNothing(client, params) {
                 { "$unwind": "$hostinfo" },
                 { "$project": Object.assign({}, constants_1.CombinedProjectionFromRels) }
             ];
+            console.log(7);
             return constants_1.GetRelationshipCollection(client).aggregate(AggregateExpressions).toArray();
         }
         else {
@@ -283,10 +293,11 @@ function GetRelationshipsGivenNothing(client, params) {
                     // 'appinfo.title': { $ne: null },
                     }, ...matchExpressions)
                 },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 { "$project": constants_1.CombinedProjectionFromRels }
             ];
+            console.log(8);
             return constants_1.GetRelationshipCollection(client).aggregate(AggregateExpressions).toArray();
         }
     });
@@ -314,7 +325,7 @@ function GetGroupRelationships(groupsCollection, relationshipsCollection, params
                 { "$sort": { "host": -1 } },
                 { "$lookup": constants_1.LookUpExpressionForRelationshipsUsingHost },
                 { "$unwind": "$relinfo" },
-                { "$skip": skip || 0 },
+                { "$skip": skip },
                 { "$limit": limit || 10 },
                 {
                     "$lookup": {
@@ -327,6 +338,7 @@ function GetGroupRelationships(groupsCollection, relationshipsCollection, params
                 { "$unwind": "$appinfo" },
                 { "$project": constants_1.HostProjection }
             ];
+            console.log(9);
             return relationshipsCollection.aggregate(AggregateExpressions).toArray();
         }
     });
@@ -345,27 +357,34 @@ function GetRelationships(client, params, callback) {
             app = params.app;
         if (!_.isEmpty(params.host))
             host = params.host;
-        if (!_.isEmpty(params.appList))
-            appList = params.appList;
+        if (!_.isEmpty(params.apps))
+            appList = params.apps;
         if (!_.isEmpty(params.count))
             useCount = params.count === 'true';
         let data = [];
+        // console.log(params);
         if (group) {
+            console.log(101);
             data = yield GetGroupRelationships(groupsCollection, relationshipsCollection, params, group);
         }
         else if (appList.length > 0) {
-            data = yield GetRelationshipsGivenAppList(appsCollection, params, appList);
+            console.log(102);
+            data = yield GetRelationshipsGivenAppList(relationshipsCollection, params, appList);
         }
         else if (app && host) {
+            console.log(103);
             data = yield GetRelationshipsGivenAppAndHost(appsCollection, params, app, host);
         }
         else if (app && !host) {
+            console.log(104);
             data = yield GetRelationshipsGivenApp(appsCollection, params, app);
         }
         else if (!app && host) {
+            console.log(105);
             data = yield GetRelationshipsGivenHost(hostsCollection, params, host, useCount);
         }
         else if (!app && !host) {
+            console.log(106);
             data = yield GetRelationshipsGivenNothing(client, params);
         }
         client_1.CleanupMongoClient(client);

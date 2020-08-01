@@ -3,17 +3,18 @@
 
 .home-container {
     .home-header2 {
-        background: rgba($accent, 1);
-        color: rgba($color: #fff, $alpha: 0.80);
+        background: #edeff8;
+        color: rgba($color: #000, $alpha: 1);
         position: relative;
         overflow: hidden;
 
         .container {
             position: relative;
-            padding: 120px 0 60px 0;
+            padding: 180px 0 120px 0;
             z-index: 3;
             display: flex;
             flex-flow: column;
+            // border-bottom: 1px solid rgba($color: #000, $alpha: 0.1);
             .up {
                 font-weight: 100;
                 text-align: center;
@@ -25,7 +26,8 @@
                     padding-bottom: 15px;
                     line-height: 60px;
                     font-size: xx-large;
-                    border-bottom: 2px solid rgba($color: #fff, $alpha: 0.20);
+                    font-weight: bold;
+                    // border-bottom: 2px solid rgba($color: #fff, $alpha: 0.20);
                 }
             }
             .down {
@@ -37,6 +39,13 @@
                     padding: 0 30px;
                     font-weight: 800;
                     text-shadow: 0px 0px 4px rgba(#000, 0.10);
+                }
+                p {
+                    margin-bottom: 30px;
+                    padding-bottom: 15px;
+                    padding: 0 30px;
+                    font-weight: 500;
+                    max-width: 800px;
                 }
             }
             .btn-container {
@@ -152,10 +161,9 @@
                     display: flex;
                     flex-direction: column;
                     .process-num {
-                        background: #f6f6f6;
-                        line-height: 36px;
-                        text-align: center;
-                        height: 36px;
+                        border-left: 2px solid rgba(#000, 0.50);;
+                        text-align: left;
+                        padding-left: 12px;
                         margin-bottom: 15px;
                         order: 1;
                         letter-spacing: 1px;
@@ -188,6 +196,8 @@
             .top-queries-holder {
                 display: flex;
                 flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
 
                 a {
                     cursor: pointer;

@@ -28,7 +28,7 @@ export class DataService {
         const url = API_URL + '/api/apps/count';
         return this.http.get(url);
     }
-    getAppRelationships(app, skip = 0, limit = 10, count = false) {
+    getAppRelationships(app, skip = 0, limit = 100, count = false) {
         const url = API_URL + `/api/relationships?app=${app}&skip=${skip}&limit=${limit}&count=${count}`;
         return this.http.post(url, {});
     }
@@ -44,7 +44,8 @@ export class DataService {
             limit: limit || 0
         });
     }
-    getBaseRelationships(params, skip = 0, limit = 10, count = false) {
+    getBaseRelationships(params, skip = 0, limit = 100, count = false) {
+        console.log(API_URL);
         const url = API_URL + `/api/relationships?&skip=${skip}&limit=${limit}&count=${count}`;
         return this.http.post(url, params);
     }

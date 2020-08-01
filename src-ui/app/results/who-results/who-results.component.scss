@@ -1,0 +1,82 @@
+@import '../../../variables';
+@import '../../../shared';
+:host {
+    width: 100%;
+}
+.who-results {
+    padding: 0;
+    &-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-bottom: 30px;
+        font-weight: 400;
+        opacity: 0.90;
+        border-bottom: 1px solid rgba($color: #000, $alpha: 0.1);
+        &-left {
+            width: 500px;
+            flex: initial;
+        }
+        &-right {
+            flex: 1;
+        }
+    }
+    &-item {
+        padding: 60px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        &-left {
+            width: 500px;
+            flex: initial;
+        }
+        &-right {
+            flex: 1;
+        }
+        &:not(:last-child) {
+            border-bottom: 1px solid rgba($color: #000, $alpha: 0.1);
+        }
+    }
+    &-host {
+        margin-bottom: 5px;
+    }
+    .taxonomy {
+        &-item {
+            &-info {
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-items: flex-start;
+                width: 360px;
+                &-left {
+                    flex: initial;
+                    width: 72px;
+                    height: 72px;
+                    border-radius: 50%;
+                    background-color: rgba($accent, 0.15);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: -24px;
+                    i {
+                        width: 48px;
+                        height: 48px;
+                        color: #fff;
+                        margin: 0;
+                    }
+                }
+                &-right {
+                    flex: 1;
+                    padding: 0 30px;
+                    label {
+                        font-weight: bold;
+                        font-size: large;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

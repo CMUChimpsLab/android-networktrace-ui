@@ -1,0 +1,38 @@
+<div class="viz-container">
+    <div class="hosts-container">
+        <div class="host"  *ngFor="let host of services" [attr.data-host-id]="host.hostIdentifier" (click)="onHostClick(host)" [class.active]="host.active">
+            <div class="host-upper">
+                <img [attr.src]="host.who_company_icon" />
+                <label>{{host.who_company}}</label>
+            </div>
+            <div class="host-lower">
+                <div class="icon-wrapper" *ngFor="let taxonomy of host.taxonomyIcons">
+                    <i [ngClass]="taxonomy.icon"></i>
+                </div>
+            </div>
+            <div class="anchor"></div>
+        </div>
+    </div>
+    <div class="apps-container">
+        <div class="app"  *ngFor="let app of apps" [attr.data-app-id]="app.app" (click)="onAppClick(app)" [class.active]="app.active">
+            <img [attr.src]="app.icon" />
+            <label>{{app.title}}</label>
+            <div class="anchor"></div>
+        </div>
+    </div>
+</div>
+<div class="data-container">
+     <div class="relationship-data" *ngFor="let rel of activeRelationships">
+        <div class="upper">
+            <label *ngIf="activeType === 'app'">To<strong>{{rel.hostTitle}}</strong></label>
+            <label *ngIf="activeType === 'host'">From<strong>{{rel.appTitle}}</strong></label>
+        </div>
+         <div class="middle">
+            <i [ngClass]="rel.taxonomyIcon"></i>
+            <label>{{rel.taxonomyLabel}}</label>
+         </div>
+         <div class="lower">
+             <label>{{rel.purposeLabel}}</label>
+         </div>
+    </div>
+</div>
