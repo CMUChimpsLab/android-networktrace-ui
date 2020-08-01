@@ -30,7 +30,8 @@
               "src-ui/styles.scss"
             ],
             "scripts": [
-              "src-ui/vendors/palette.js"
+              "src-ui/vendors/palette.js",
+              "src-ui/vendors/leader-line.min.js"
             ]
           },
           "configurations": {

@@ -1,6 +1,7 @@
 <div class="search-container">
     <div class="search-header">
-        <div class="container flex-content noPaddingBottom" [attr.type]="currentTypeDetails">
+        <div class="container flex-content noPaddingBottom">
+        <!-- <div class="container flex-content noPaddingBottom" [attr.type]="currentTypeDetails"> -->
             <div class="flex-content-left search-details" *ngIf="!showTypeDetails">
                 <ng-container *ngIf="currentTypeDetails === 'plain-search'">
                     <label>Showing data for all Apps</label>
@@ -15,11 +16,11 @@
                     </ng-container>
                 </p>
             </div>
-            <div class="flex-content-left type-details" *ngIf="showTypeDetails">
+            <div class="flex-content-top-left type-details" *ngIf="showTypeDetails">
                 <ng-container *ngIf="currentTypeDetails === 'who'">
                     <img [attr.src]="appDetails?.icon" />
                     <div class="type-details-specifics">
-                        <label>What data is <span>sent</span> by <strong>{{appDetails?.title}}</strong> ?</label>
+                        <label><strong>{{appDetails?.title}}</strong> analysis page</label>
                         <p>{{appDetails?.summary}}</p>
                     </div>
                 </ng-container>
@@ -28,7 +29,7 @@
                     <div class="type-details-specifics">
                         <label class="who_company" *ngIf="hostDetails?.who_company"><span class="not-colored">{{hostDetails?.who_company}}</span></label>
                         <label *ngIf="currentTypeDetails === 'where'" >What data is <span>collected</span> by
-                            <strong >{{hostDetails?.host}} </strong>?
+                            <strong >{{hostDetails?.domain}} </strong>?
                         </label>
                         <label *ngIf="currentTypeDetails === 'group'" >What data are <span>collected</span> by
                             <strong > its services </strong>?
@@ -37,15 +38,15 @@
                     </div>
                 </ng-container>
             </div>
-            <div class="flex-content-right">
+            <!-- <div class="flex-content-right">
                 <button mat-raised-button *ngIf="showPurposeDistrbution" color="primary"
                     (click)="openDistributionChartForPie()">Purpose Distribution</button>
                 <button mat-raised-button *ngIf="showCategoryDistribution" color="primary"
                     (click)="openDistributionChartForBar()">Category-wise Distribution</button>
-            </div>
+            </div> -->
         </div>
         <div class="container flex-content statistics-item-holder"
-            *ngIf="statistics.length > 0">
+            *ngIf="statistics.length > 0 && currentTypeDetails !== 'who'">
             <div class="statistics-item" *ngFor="let stat of statistics">
                 <label class="lower">{{stat.key}}</label>
                 <label class="upper">{{stat.value}}</label>
@@ -67,7 +68,10 @@
                         </i></button>
                 </div>
             </div>
-            <div class="results-header mb-0" style="z-index: 1;">
+            <div class="results-header mb-0" *ngIf="currentTypeDetails === 'who'">
+                <app-who-results [app]="paramId"></app-who-results>
+            </div>
+            <div class="results-header mb-0" *ngIf="currentTypeDetails !== 'who'">
                 <div class="results-header-total">
                     <table>
                         <thead>
@@ -86,7 +90,7 @@
                     </table>
                 </div>
             </div>
-            <div class="results-wrapper pt-0 pb-0">
+            <div class="results-wrapper pt-0 pb-0" *ngIf="currentTypeDetails !== 'who'">
                 <div class="results-container">
                     <ng-container *ngFor="let group of rowGroups; let i = index;">
                         <div class="results-container-item" *ngIf="group.rows.length > 0">

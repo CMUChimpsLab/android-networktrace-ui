@@ -1,0 +1,24 @@
+<div class="who-results">
+    <div class="who-results-header">
+        <div class="who-results-header-left">Data Type</div>
+        <div class="who-results-header-right">Where does my data go ?</div>
+    </div>
+    <div class="who-results-item" *ngFor="let item of whoResultGroups">
+        <div class="who-results-item-left">
+            <div class="taxonomy-item-info">
+                <div class="taxonomy-item-info-left">
+                    <i [ngClass]="item?.taxonomy?.icon"></i>
+                </div>
+                <div class="taxonomy-item-info-right">
+                    <label>{{item?.taxonomy?.label}} Data</label>
+                    <p>{{item?.taxonomy?.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="who-results-item-right">
+            <div class="who-results-host" *ngFor="let rel of item.relationships;let i = index">
+                <label><strong>{{rel?.host}} </strong><span style="padding-left: 10px;">{{rel?.purpose?.label}}</span></label>
+            </div>
+        </div>
+    </div>
+</div>
