@@ -2,23 +2,31 @@
     <div class="home-header2">
         <div class="container">
             <div class="up">
-                <p>Who knows What about us and Why ?</p>
+                <p><span style="color: #0047FF">Who</span> knows <span style="color: #0047FF">What</span> about us and
+                    <span style="color: #0047FF">Why</span>?</p>
             </div>
             <div class="down">
-                <p>Many smartphone apps gather and send us lots of data to various third-party services around the Internet.
-                    However, its hard to knows exactly what apps are sending out what data and why. Here, we show which of the five data types
-                    are collected most by the apps. Browse the site to find where does the data go.
+                <p>Many smartphone apps gather and send of sensitive data to third parties around the Internet. Android
+                    users may see notifications of apps trying to access their data daily. However, it's difficult for
+                    users to know what kind of data is being collected by those apps, and why the data is being
+                    collected.
+                    The goal of our website is to educate users about what kind of network activity is being carried out
+                    by Android apps.
+                    Learn more about this project from our <a
+                        href="https://www.synergylabs.org/publications/Jin2018WhyAT/">published paper.</a>
                 </p>
             </div>
-            <div class="btn-container">
-                <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
+            <div class="line">
+                <hr>
             </div>
+
         </div>
     </div>
     <div class="home-content">
         <div class="container p-0">
             <div class="results-wrapper">
-                <label style="text-align: center;font-size: x-large;">Destinations for data sent by some top apps</label>
+                <label style="text-align: center;font-size: x-large;">Destinations for data sent by some top
+                    apps</label>
                 <app-cloud-animation></app-cloud-animation>
             </div>
             <div class="results-wrapper">

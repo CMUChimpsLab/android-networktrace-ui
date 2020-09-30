@@ -2,12 +2,12 @@
 @import '../../shared';
 
 .home-container {
+    
     .home-header2 {
-        background: #edeff8;
+        background: #ffffff;
         color: rgba($color: #000, $alpha: 1);
         position: relative;
         overflow: hidden;
-
         .container {
             position: relative;
             padding: 180px 0 120px 0;
@@ -29,6 +29,7 @@
                     font-weight: bold;
                     // border-bottom: 2px solid rgba($color: #fff, $alpha: 0.20);
                 }
+                
             }
             .down {
                 display: flex;
@@ -45,19 +46,17 @@
                     padding-bottom: 15px;
                     padding: 0 30px;
                     font-weight: 500;
-                    max-width: 800px;
+                    max-width: 1094px;
                 }
             }
-            .btn-container {
-                width: 100%;
-                display: flex;
+            .line{
+                display: flex; 
+                height: 2px; 
+                max-width: 1094px; 
+                color: #CBCBCB; 
+                background-color: #CBCBCB;
                 justify-content: center;
-                align-items: center;
-                margin: 40px 0 20px 0;
-                button {
-                    line-height: 48px;
-                    height: 48px;
-                }
+                margin-top: 55px;
             }
         }
     }
