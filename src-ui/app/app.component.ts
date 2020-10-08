@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
     showHeader = true;
     title = 'privacy-analytics-v2';
     loaderShown = false;
-    constructor(private appService: AppService, private dataService: DataService) {}
+    constructor(private appService: AppService, private dataService: DataService) { }
     ngOnInit() {
         this.appService.headerShown$.subscribe(() => {
             setTimeout(() => {

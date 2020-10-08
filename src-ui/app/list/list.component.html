@@ -9,7 +9,8 @@
                 <div class="results-container">
                     <div class="results-container-item">
                         <ng-container *ngFor="let row of apps; let j = index;">
-                            <div class="results-list-item" [routerLink]="['/results/who/' + row.app]" *ngIf="currentTypeDetails === 'app-list'">
+                            <div class="results-list-item" [routerLink]="['/results/who/' + row.app]"
+                                *ngIf="currentTypeDetails === 'app-list'">
                                 <div class="logo">
                                     <img [attr.src]="row.icon" />
                                 </div>
@@ -18,7 +19,8 @@
                                     <label class="package">{{row.app}}</label>
                                 </div>
                             </div>
-                            <div class="results-list-item" [routerLink]="['/results/where/' + row.app]" *ngIf="currentTypeDetails === 'host-list'">
+                            <div class="results-list-item" [routerLink]="['/results/where/' + row.app]"
+                                *ngIf="currentTypeDetails === 'host-list'">
                                 <div class="logo">
                                     <img [attr.src]="row.icon" />
                                 </div>
