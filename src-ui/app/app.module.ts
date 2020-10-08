@@ -31,6 +31,7 @@ import { FAQComponent } from './faq/faq.component';
 import { ListComponent } from './list/list.component';
 import { WhoResultsComponent } from './results/who-results/who-results.component';
 import { CloudAnimationComponent } from './cloud-animation/cloud-animation.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,9 @@ import { CloudAnimationComponent } from './cloud-animation/cloud-animation.compo
         MatCheckboxModule,
         MatTooltipModule,
         MatSelectModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatExpansionModule
+
     ],
     providers: [
         AppService,
