@@ -6,21 +6,23 @@
                 <p><span style="color: #0047FF">Who</span> knows <span style="color: #0047FF">What</span> about us and
                     <span style="color: #0047FF">Why</span>?</p>
             </div>
-            <div class="diagram">
-                <img src="../../assets/diagram1.png">
+            <div>
+                <div class="diagram">
+                    <img src={{Image.source}}>
+                </div>
+                <div class="modal-link">
+                    <a (click)=changeImage() style="color: #0047FF;
+                    text-decoration: underline;
+                    cursor: pointer;">{{Image.text}}</a>
+                </div>
             </div>
-            <div class="modal-link">
-                <a href="">view details</a>
-            </div>
-            <div class="down">
-                <p>Many smartphone apps gather and send of sensitive data to third parties around the Internet. Android
-                    users may see notifications of apps trying to access their data daily. However, it's difficult for
-                    users to know what kind of data is being collected by those apps, and why the data is being
-                    collected.
-                    The goal of our website is to educate users about what kind of network activity is being carried out
-                    by Android apps.
-                    Learn more about this project from our <a
-                        href="https://www.synergylabs.org/publications/Jin2018WhyAT/">published paper.</a>
+
+            <div class=" down">
+                <p style="color: #2E2E2E">Many smartphone apps gather and send lots of data to various third-party
+                    services around the
+                    Internet. However, it's hard to know exactly what apps are sending out what data and why. Here, we
+                    show which of five data types are collected most by the apps. Browse the site to out find where
+                    the data goes.
                 </p>
             </div>
             <div class="line">
@@ -37,26 +39,30 @@
                 Data</h2>
 
             <div class="down">
-                <div class="split" style="padding-top: 115px; display: flex; flex-flow: row;">
+                <div class="split" style="padding-top: 20px; display: flex; flex-flow: row;">
                     <div class="img-cont"
                         style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
-                        <img style="max-width: 100%;" src="../../assets/AnalyzeData.PNG">
+                        <img style="width: 100%; height: 100%" src="../../assets/diagram3.png">
                     </div>
                     <div class="text" style="flex: 3">
-                        <p style="color:black; font-size: 16px;">As a team of researchers at Carnegie Mellon
-                            University, we collected network traces from thousands of apps, and analyze them into
-                            categories
-                            of data types. In this website
-                            we present data visualizations showing “who” collects our data, “what” data they collected,
-                            “where” do they send our data to, and “why” the data is being sent.
+                        <p style="color:#2E2E2E; font-size: 16px;">As a team of researchers at Carnegie Mellon
+                            University,
+                            we started this research in November 2016. We collected 6.3 million network traces from
+                            approximately 15 thousand apps using 8 phones, and analyze them into 5 categories of data
+                            types. We built a custom VPN to intercept the network traces from smartphone apps to cloud
+                            servers through HTTP(S) requests. <a href=""
+                                style="text-decoration: underline; color:#2E2E2E">Read more
+                                about our
+                                data collection process</a>.
+
+
                         </p>
                         <p style="color:black; font-size: 16px;">
-                            The most common way for smartphone apps to communicate with cloud servers is through HTTP(S)
-                            requests. Therefore, we built a custom VPN to intercept these network traces.
+                            In this website, we present data visualizations showing “who” collects our data, “what” data
+                            they collected, “where” do they send our data to, and “why” the data is being sent. You can
+                            search to find apps on your phone and see how you can better protect your data.
                         </p>
-                        <p style="color:black; font-size: 16px;">
-                            See more details
-                        </p>
+
                     </div>
                 </div>
             </div>
@@ -70,7 +76,8 @@
         <div class="container">
             <h1 style="color: #555555;
                 font-size: 36px; font-weight: bold">What can you learn about smartphone data?</h1>
-            <h2 style="color: #9D9D9D; font-size: 28px; font-style: italic;">Data flow of Top 5 Apps that collect the
+            <h2 style="color: #9D9D9D; font-size: 28px; font-style: italic;">Data flow of Top 5 Apps that collect
+                the
                 most data</h2>
 
             <div class="down">
