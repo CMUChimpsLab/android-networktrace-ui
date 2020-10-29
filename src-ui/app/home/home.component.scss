@@ -2,15 +2,58 @@
 @import '../../shared';
 
 .home-container {
+    background-color: white;
+    .diagram {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .diagram-holder {
+            max-width: 795px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        .diagram-wrapper {
+            display: flex;
+            margin: 0 -30px;
+            margin-top: 15px;
+            align-content: space-between;
+            justify-content: center;
+            .diagram-bubble {
+                flex: 1;
+                width: 33%;
+                padding: 0 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .diagram-img {
+                    order: 1;
+                    justify-content: center;
+                    img {
+                        max-width: 500px;
+                    }
+                }
+                .diagram-text {
+                    order: 2;
+                    margin: 0px 0 15px 0;
+                    justify-content: center;
+                    p {
+                        font-size: medium;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    }
     .home-header2 {
-        background: #edeff8;
+        background: #ffffff;
         color: rgba($color: #000, $alpha: 1);
         position: relative;
         overflow: hidden;
-
         .container {
             position: relative;
-            padding: 180px 0 120px 0;
+            padding: 50px 0 50px 0;
             z-index: 3;
             display: flex;
             flex-flow: column;
@@ -25,16 +68,23 @@
                     margin-bottom: 30px;
                     padding-bottom: 15px;
                     line-height: 60px;
-                    font-size: xx-large;
+                    font-size: 45px;
                     font-weight: bold;
                     // border-bottom: 2px solid rgba($color: #fff, $alpha: 0.20);
                 }
+                
+            }
+            .modal-link{
+                display: flex; 
+                flex-direction: row-reverse;
+                padding-right: 50px;
             }
             .down {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 15px;
+                padding-top: 50px;
                 strong {
                     padding: 0 30px;
                     font-weight: 800;
@@ -45,19 +95,17 @@
                     padding-bottom: 15px;
                     padding: 0 30px;
                     font-weight: 500;
-                    max-width: 800px;
+                    max-width: 1094px;
                 }
             }
-            .btn-container {
-                width: 100%;
-                display: flex;
+            .line{
+                display: flex; 
+                height: 2px; 
+                max-width: 1094px; 
+                color: #CBCBCB; 
+                background-color: #CBCBCB;
                 justify-content: center;
-                align-items: center;
-                margin: 40px 0 20px 0;
-                button {
-                    line-height: 48px;
-                    height: 48px;
-                }
+                margin-top: 55px;
             }
         }
     }
@@ -146,7 +194,6 @@
 
     .home-content {
         .container {
-            padding: 60px 0;
         }
 
         .process-bubbles-holder {
@@ -184,7 +231,7 @@
                         margin: 0px 0 15px 0;
                         p {
                             font-size: medium;
-                            text-align: left;
+                            text-align: center;
                         }
                     }
                 }
