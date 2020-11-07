@@ -29,13 +29,12 @@
             }
     
             .dropdown-text{
-                padding-top: 5px;
+                padding-top: 10px;
                 padding-bottom: 5px;
+                padding-left: 20px;
+                
                 color: #555555;
                 font-size: 20px;
-                p{
-                    margin-left: 50px;
-                }
             }
         }
        }
@@ -56,11 +55,13 @@
                 .answer {
                     font-size: medium;
                     margin: 10px 0 0 0;
+                    
                 }
             }
         }
     }
 }
+
 
 /deep/ .mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: #0047FF;}
 // /deep/ .mat-expansion-panel-body::after, .mat-expansion-panel-body{background-color: yellow;}
