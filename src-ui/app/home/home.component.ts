@@ -48,14 +48,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private appService: AppService,
         private dataService: DataService,
-        private router: Router
+        private router: Router,
     ) { }
+    diagrams = [
+        {
+            source: '../../assets/diagram1.png',
+            text: 'view details'
+        },
+        {
+            source: '../../assets/diagram2.png',
+            text: 'go back'
+        }
+    ];
+    Image = this.diagrams[0];
 
     ngOnInit() {
         this.appService.toggleHomePage(true);
         this.appService.showLoader();
         this.appService.hideHeader();
         this.dataService.getBaseRelationships(this.params, 0, 100).subscribe((data: any) => this.buildRows(data, true));
+
     }
     ngOnDestroy() {
         this.appService.toggleHomePage(false);
@@ -76,5 +88,15 @@ export class HomeComponent implements OnInit, OnDestroy {
         const groupData = BuildRowGroups(data, forceExpand);
         this.rowGroups = SortRowGroups(groupData.rowGroups, 'what', 'ASC');
         this.appService.hideLoader();
+    }
+
+    item = 0;
+    changeImage() {
+        this.item++;
+        if (this.item > 1) {
+            this.item = 0;
+        }
+        this.Image = this.diagrams[this.item];
+
     }
 }

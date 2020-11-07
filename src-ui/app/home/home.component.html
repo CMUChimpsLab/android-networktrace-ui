@@ -1,79 +1,76 @@
 <div class="home-container">
     <div class="home-header2">
+        <div style="padding-top: 130px;"></div>
         <div class="container">
             <div class="up">
-                <p>Who knows What about us and Why ?</p>
+                <p><span style="color: #0047FF">Who</span> knows <span style="color: #0047FF">What</span> about us and
+                    <span style="color: #0047FF">Why</span>?</p>
             </div>
-            <div class="down">
-                <p>Many smartphone apps gather and send us lots of data to various third-party services around the
-                    Internet.
-                    However, its hard to knows exactly what apps are sending out what data and why. Here, we show which
-                    of the five data types
-                    are collected most by the apps. Browse the site to find where does the data go.
+            <div>
+                <div class="diagram">
+                    <img src={{Image.source}}>
+                </div>
+                <div class="modal-link">
+                    <a (click)=changeImage() style="color: #0047FF;
+                    text-decoration: underline;
+                    cursor: pointer;">{{Image.text}}</a>
+                </div>
+            </div>
+
+            <div class=" down">
+                <p style="color: #2E2E2E">Many smartphone apps gather and send lots of data to various third-party
+                    services around the
+                    Internet. However, it's hard to know exactly what apps are sending out what data and why. Here, we
+                    show which of five data types are collected most by the apps. Browse the site to out find where
+                    the data goes.
                 </p>
             </div>
-            <div class="btn-container">
-                <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
+            <div class="line">
+                <hr>
             </div>
         </div>
     </div>
-    <div class="home-content">
-        <div class="container p-0">
-            <div class="results-wrapper">
-                <label style="text-align: center;font-size: x-large;">Destinations for data sent by some top
-                    apps</label>
-                <app-cloud-animation></app-cloud-animation>
-            </div>
-            <div class="results-wrapper">
-                <div class="top-queries-wrapper">
-                    <label style="text-align: center;font-size: x-large;">Top Queries</label>
-                    <div class="top-queries-holder">
-                        <a (click)="openLink(item)" *ngFor="let item of queries">{{item.label}}</a>
+
+    <div class="home-header2">
+        <div class="container">
+            <h1 style="color: #555555;
+                font-size: 36px; font-weight: bold">How Did We Build This</h1>
+            <h2 style="color: #9D9D9D; font-size: 28px;">Collecting and Analyzing
+                Data</h2>
+
+            <div class="down">
+                <div class="split" style="padding-top: 20px; display: flex; flex-flow: row;">
+                    <div class="img-cont"
+                        style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
+                        <img style="width: 100%; height: 100%" src="../../assets/diagram3.png">
+                    </div>
+                    <div class="text" style="flex: 3">
+                        <p style="color:#2E2E2E; font-size: 16px;">As a team of researchers at Carnegie Mellon
+                            University,
+                            we started this research in November 2016. We collected 6.3 million network traces from
+                            approximately 15 thousand apps using 8 phones, and analyze them into 5 categories of data
+                            types. We built a custom VPN to intercept the network traces from smartphone apps to cloud
+                            servers through HTTP(S) requests. <a href=""
+                                style="text-decoration: underline; color:#2E2E2E">Read more
+                                about our
+                                data collection process</a>.
+
+
+                        </p>
+                        <p style="color: #2E2E2E; font-size: 16px;">
+                            In this website, we present data visualizations showing “who” collects our data, “what” data
+                            they collected, “where” do they send our data to, and “why” the data is being sent. You can
+                            search to find apps on your phone and see how you can better protect your data.
+                        </p>
+
                     </div>
                 </div>
             </div>
-            <div class="results-wrapper">
-                <div class="process-bubbles-holder">
-                    <label style="text-align: center;font-size: x-large;">Our Process </label>
-                    <div class="process-bubbles-wrapper">
-                        <div class="process-bubble">
-                            <div class="process-num">STEP 1</div>
-                            <div class="process-img">
-                                <img src='../../assets/collect.svg' />
-                            </div>
-                            <div class="process-text">
-                                <p>We collated network activity for 16000+ android apps from across all regions</p>
-                            </div>
-                        </div>
-                        <div class="process-bubble">
-                            <div class="process-num">STEP 2</div>
-                            <div class="process-img">
-                                <img src='../../assets/analyze.svg' />
-                            </div>
-                            <div class="process-text">
-                                <p>We analyzed the data to look for patterns and similarities based on a rich taxonomy
-                                </p>
-                            </div>
-                        </div>
-                        <div class="process-bubble">
-                            <div class="process-num">STEP 3</div>
-                            <div class="process-img">
-                                <img src='../../assets/present.svg' />
-                            </div>
-                            <div class="process-text">
-                                <p>We built a web app to help you visulize where do the apps send data and why.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="line">
+                <hr>
             </div>
         </div>
     </div>
-    <div class="home-header">
-        <div class="container" style="padding-bottom: 60px;">
-            <div class="search-wrapper">
-                <button [routerLink]="['/results']" mat-raised-button>See data shared by all apps</button>
-            </div>
-        </div>
-    </div>
+
+
 </div>
