@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { BuildRowGroups, SortRowGroups } from '../builder';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import * as Highcharts from 'highcharts';
 
 @Component({
     selector: 'app-home',
@@ -11,6 +12,45 @@ import { Router } from '@angular/router';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+    title = 'myHighchart';
+
+    data = [{
+        name: 'General ID',
+        data: [12500, 2000]
+    }, {
+        name: 'Device',
+        data: [11000, 2100]
+    }, {
+        name: 'Network',
+        data: [9000, 2000]
+    }, {
+        name: 'Account',
+        data: [6000, 1900]
+    }, {
+        name: 'Location',
+        data: [8000, 1800]
+    }];
+
+    highcharts = Highcharts;
+    chartOptions = {
+        chart: {
+            type: "bar"
+        },
+        title: {
+            text: ""
+        },
+        xAxis: {
+            categories: ["Google", "Facebook"]
+        },
+        yAxis: {
+            title: {
+                text: "Total Number of Apps"
+            },
+            tickInterval: 3500
+        },
+        series: this.data
+    };
 
     itemsThree = [1, 2, 3];
     itemsFive = [1, 2, 3, 4, 5];
