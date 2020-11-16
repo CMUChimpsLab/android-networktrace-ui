@@ -70,6 +70,7 @@
                     line-height: 60px;
                     font-size: 45px;
                     font-weight: bold;
+                    
                     // border-bottom: 2px solid rgba($color: #fff, $alpha: 0.20);
                 }
                 
@@ -264,3 +265,13 @@
     }
 }
 
+.mat-button-toggle-group {
+    margin-left: 12px;
+    border-radius: 20px;
+    height: 40px;
+    font-size: 14px;
+    align-items: center;
+    .mat-button-toggle-checked{
+        background-color: #0047FF;
+    };
+};

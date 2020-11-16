@@ -82,7 +82,25 @@
 
     <div class="home-header2">
         <div class="container">
-            <h2 style="color: #9D9D9D; font-size: 22px;">Data collected by top companies/cloud services</h2>
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <h2 style="flex: 3; color: #9D9D9D; font-size: 22px;">Data collected by top companies/cloud services
+                </h2>
+                <div
+                    style="flex: 3;display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <p style="align-self:center; color: #0047FF;">View by</p>
+
+                    <mat-button-toggle-group name="Data" value="Companies">
+                        <mat-button-toggle value="Companies">Top Companies</mat-button-toggle>
+                        <mat-button-toggle value="Cloud">Top Cloud Services</mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                    <mat-button-toggle-group name="View" value="Overview">
+                        <mat-button-toggle value="Overview">Overview</mat-button-toggle>
+                        <mat-button-toggle value="Detail">Detail View</mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                </div>
+            </div>
             <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
                 style="width: 100%; height: 400px; display: block;">
             </highcharts-chart>

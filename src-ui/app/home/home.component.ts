@@ -5,7 +5,7 @@ import { BuildRowGroups, SortRowGroups } from '../builder';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
