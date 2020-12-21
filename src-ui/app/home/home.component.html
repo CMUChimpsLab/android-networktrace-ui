@@ -1,22 +1,27 @@
 <div class="home-container">
+    <!--Each "home-header2" is a major chunk of the website -- the content between the horizontal lines-->
     <div class="home-header2">
         <div style="padding-top: 130px;"></div>
         <div class="container">
+            <!--"up" is the "title" of the section-->
             <div class="up">
                 <p><span style="color: #0047FF">Who</span> knows <span style="color: #0047FF">What</span> about us and
-                    <span style="color: #0047FF">Why</span>?</p>
+                    <span style="color: #0047FF">Why</span>?
+                </p>
             </div>
+            <!--This div has the front page diagram-->
             <div>
                 <div class="diagram">
                     <img src={{Image.source}}>
                 </div>
+                <!-- The url is clickable to allow users to change between images-->
                 <div class="modal-link">
                     <a (click)=changeImage() style="color: #0047FF;
                     text-decoration: underline;
                     cursor: pointer;">{{Image.text}}</a>
                 </div>
             </div>
-
+            <!--"down" will often contain the content of the section-->
             <div class=" down">
                 <p style="color: #2E2E2E">Many smartphone apps gather and send lots of data to various third-party
                     services around the
@@ -34,12 +39,13 @@
     <div class="home-header2">
         <div class="container">
             <h1 style="color: #555555;
-                font-size: 36px; font-weight: bold">How Did We Build This</h1>
-            <h2 style="color: #9D9D9D; font-size: 28px;">Collecting and Analyzing
+                font-size: 26px; font-weight: bold">How Did We Build This</h1>
+            <h2 style="color: #9D9D9D; font-size: 22px;">Collecting and Analyzing
                 Data</h2>
 
             <div class="down">
                 <div class="split" style="padding-top: 20px; display: flex; flex-flow: row;">
+                    <!-- The current image is static, but will need the arrows pictured to be animated-->
                     <div class="img-cont"
                         style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
                         <img style="width: 100%; height: 100%" src="../../assets/diagram3.png">
@@ -72,5 +78,47 @@
         </div>
     </div>
 
+    <div class="home-header2">
+        <div class="container">
+            <h1 style="color: #555555;
+                font-size: 26px; font-weight: bold">What can you learn about smartphone data?</h1>
+            <h2 style="color: #9D9D9D; font-size: 22px;">Data Flow of Top 5 Apps that Collect the Most Data</h2>
+            <!--The animated arrow diagram should go here -- reach out to Niharika for more details-->
+            <img src="../../assets/Flowchart_Header.png">
+            <img src="../../assets/Flowchart_Content.png">
+        </div>
+    </div>
 
-</div>
+    <!--This div is for the bar graph depiction of data-->
+    <div class="home-header2">
+        <div class="container">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                <h2 style="flex: 3; color: #9D9D9D; font-size: 22px;">Data collected by top companies/cloud services
+                </h2>
+                <!--Users are allowed to choose different options to view the graph in-->
+                <div
+                    style="flex: 3;display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                    <p style="align-self:center; color: #0047FF;">View by</p>
+
+                    <mat-button-toggle-group name="Data" value="Companies">
+                        <mat-button-toggle value="Companies" (change)="serviceChanged($event.value)">Top Companies
+                        </mat-button-toggle>
+                        <mat-button-toggle value="Cloud" (change)="serviceChanged($event.value)">Top Cloud Services
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                    <mat-button-toggle-group name="View" value="Overview">
+                        <mat-button-toggle value="Overview" (change)="detailChanged($event.value)">Overview
+                        </mat-button-toggle>
+                        <mat-button-toggle value="Detail" (change)="detailChanged($event.value)">Detail View
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                </div>
+            </div>
+            <!--Currently, swapping datasets with the graph doesn't work T^T-->
+            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart>
+        </div>
+    </div>

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
@@ -55,6 +56,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
         BrowserAnimationsModule,
         AppRoutingModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatMenuModule,
         MatPaginatorModule,
         MatInputModule,

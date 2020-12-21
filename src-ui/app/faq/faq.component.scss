@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     margin: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     .container {
         padding: 45px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
         h1 {
             margin: 100px 0 0 0;
@@ -18,6 +20,7 @@
         h2 {
             font-size: 26px;
             color:#0047FF;
+
         }
         
         .question-header{
@@ -26,6 +29,8 @@
                 color: #434343;
                 font-size: 24px;
                 background-color: white;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
             }
     
             .dropdown-text{
@@ -35,6 +40,8 @@
                 
                 color: #555555;
                 font-size: 20px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
             }
         }
        }
