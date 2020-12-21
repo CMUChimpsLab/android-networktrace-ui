@@ -1,29 +1,30 @@
 <div class="faq-wrapper">
     <div class="container">
         <h1>Frequently Asked Questions</h1>
+
+        <!--Each "questiontype" class is for a major breakdown of question types (i.e. general, data) + the set of accordian boxes-->
         <div class="questiontype">
             <h2>General Information</h2>
 
+            <!--Each "question-container" is the container for a single accordian box in the set-->
             <mat-expansion-panel class="question-container">
+                <!--The header - what you can see when the box has not been dropped down-->
                 <mat-expansion-panel-header>
                     <mat-panel-title class="dropdown-header">
-                        What is Android Network Traces?
+                        What is the goal of the Android Network Traces website?
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
 
+                <!--The content of the box -- what you can see when the box has been dropped down-->
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
                     <p>
                         Many smartphone apps collect and send a great deal of data to third-party websites. The goal of
-                        this
-                        site
-                        is to help people better understand Who knows What about us and Why. By Who, we mean these
-                        third-party
-                        websites. By What, we mean what data they are collecting about us. By Why, we mean the purpose
-                        of
-                        this
-                        data collection, e.g. for advertising, for maps, for backups, and so on.
+                        this site is to help people better understand Who knows What about us and Why. By Who, we mean
+                        these third-party websites. By What, we mean what data they are collecting about us. By Why, we
+                        mean the purpose of this data collection, e.g. for advertising, for maps, for backups, and so
+                        on.
                     </p>
                 </div>
             </mat-expansion-panel>
@@ -38,9 +39,22 @@
 
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
-                    <p>
-                        To be added.
-                    </p>
+
+                    <ul>
+                        <li><b>General ID data:</b> MAC address, IMEI number UUID, and other identifiers. This data was
+                            used
+                            for analytics, advertising, authentication, and anti-fraud activities.</li>
+                        <li><b>Device data:</b> Phone model, screen size, manufacturer info etc. This data was used for
+                            analytics, advertising, and interface customization.</li>
+                        <li><b>Account data:</b> demographics such as email, age, gender, zip and settings for tasks
+                            like syncing data from different services. This data was used for analytics, advertising,
+                            and login purposes.</li>
+                        <li><b>Network data:</b> IP address and network connectivity details like WiFi, LTE, 3G, 4G etc.
+                            This data was used for analytics, network optimization, and advertising.</li>
+                        <li><b>Location data:</b> Location related GPS data from the phone + other Geospatial data. This
+                            data was used for advertising, analytics, personalization, and nearby searches.</li>
+                    </ul>
+
                 </div>
             </mat-expansion-panel>
 
@@ -54,12 +68,32 @@
 
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
-                    <p>
-                        To be added.
-                    </p>
+                    <ul>
+                        <li><b>Network trace:</b> A network trace is a single piece of data sent across the internet
+                            (i.e. packet) that we were able to intercept (ex. latitude of 45 would be a coordinate for
+                            location data).</li>
+                        <li><b>Network request:</b> A request may contain multiple network traces (ex. Latitude of 45,
+                            longitude of 90). The most common type of traffic request is HTTP or HTTPS.</li>
+                        <li><b>UI monkey:</b> This refers to a bot that randomly clicks through an app.
+                        </li>
+                    </ul>
                 </div>
             </mat-expansion-panel>
 
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Why did you choose Android instead of Apple (iOS)?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <p>Although analyzing Apple data would also be valuable, Android data was more readily accessible.
+                    </p>
+                </div>
+            </mat-expansion-panel>
 
         </div>
 
@@ -69,7 +103,7 @@
             <mat-expansion-panel class="question-container">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="dropdown-header">
-                        How much data was collected?
+                        What is the sample size?
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
@@ -77,7 +111,12 @@
                 <div class="dropdown-text " style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
                     <p>
-                        To be added.
+                        We accessed approximately 15 thousand apps, which sent 6.3 million network traces to 12 thousand
+                        domains. These apps were selected automatically because they generally did not require login,
+                        were compatible with Android 7, and could be installed over the course of 50 days. Full
+                        information about data collection is on page 173:11 of <a
+                            href="http://www.cs.cmu.edu/~mfredrik/papers/jin_ubicomp19.pdf">our paper</a>.
+
                     </p>
                 </div>
             </mat-expansion-panel>
@@ -93,8 +132,35 @@
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
                     <p>
-                        To be added.
+                        We collected data using 8 phones, an automation tool for clicking through apps, and a custom VPN
+                        for intercepting data.
                     </p>
+                    <ul>
+                        <li><b>Phones and apps:</b> In November 2016, we crawled the Google Play store to find free apps
+                            visible to US users. Out of the 185,000 apps free apps updated after 2015, 30,000 apps were
+                            compatible with Android 7 and were thus installed on eight phones. Network traces were found
+                            from half of these apps.</li>
+                        <li><b>Automation tool:</b> Each phone contained an automation tool called a “UI monkey”. The UI
+                            monkey could install an app, randomly click through it for 3 minutes, and then uninstall it.
+                            We ran the UI monkeys for 50 days.</li>
+                        <li><b>Custom VPN:</b> As the UI monkeys clicked through the apps, the phones sent data across
+                            the internet. The most common way for smartphone apps to communicate with cloud servers is
+                            through HTTP(S) requests. Therefore, we built a custom tool (or “man-in-the-middle VPN”) to
+                            intercept these outgoing HTTP(S) traffic requests.</li>
+                    </ul>
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <img src="../../assets/FAQ1.png">
+                        <img src="../../assets/FAQ2.png">
+                    </div>
+                    <p>This approach is novel in its ability to not only assess which data leaves the phones but also
+                        collect millions of data points. A limitation is that UI monkeys miss some screens in an app.
+                        Additionally, these bots were generally not logged into the apps.</p>
+                    <p>Our entire github repo is public and can be accessed on <a
+                            href="https://github.com/CMUChimpsLab/mobipurpose">github</a>. You can also download both
+                        the raw network traces and the analyzed traffic dataset on our <a
+                            href="https://github.com/CMUChimpsLab/MobiPurpose/tree/master/datasets">datasets page</a>.
+                        Please cite <a href="http://www.cs.cmu.edu/~mfredrik/papers/jin_ubicomp19.pdf">our paper</a> if
+                        you use either dataset. </p>
                 </div>
             </mat-expansion-panel>
 
@@ -109,8 +175,18 @@
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
                     <p>
-                        To be added.
+                        The responses (i.e. network traces) that our VPN intercepted were parsed as key-value pairs. For
+                        each pair, we performed a taxonomy look-up to assign a data type. For example, a key of latitude
+                        could have a value of 40.460865 and be classified as “Location data”.
                     </p>
+                    <p>
+                        Our algorithm successfully predicted the data type with 95% precision. The five data types
+                        supported with our current dataset are shown above.
+                    </p>
+                    <div
+                        style="display: flex; flex-direction:row; justify-content: center; width: min-content; height: min-content;">
+                        <img src="../../assets/FAQ3.png">
+                    </div>
                 </div>
             </mat-expansion-panel>
 
@@ -125,15 +201,63 @@
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
                     <p>
-                        To be added.
+                        Our predictive results are based on the one-time analysis of the dataset from a project called
+                        <a href="https://github.com/CMUChimpsLab/mobipurpose">MobiPurpose</a>. We assume the data type
+                        sent to the cloud services and the data collection purposes
+                        to be quite static. If we update the raw dataset in the future, we will put up a notice.
+
                     </p>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        What is the difference between PrivacyGrade.org and Android Network Traces?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <p>
+                        Our team built both PrivacyGrade.org and this website. <a
+                            href="http://privacygrade.org/">PrivacyGrade</a> assigns a privacy score to
+                        an app based on user expectations, while Android Network Traces provides transparency on where
+                        our data is going and why. That is, Android Network Traces focuses more on the third parties
+                        that are gathering data about us.
+                    </p>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Why can't I find information about the app I'm looking for?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <p>
+                        There are a few reasons why applications may be outside this scope of our dataset:
+                    </p>
+                    <ol>
+                        <li><b>Login:</b> Messaging applications such as WhatsApp require users to create accounts and
+                            are therefore outside the scope of this study.</li>
+                        <li><b>Cost:</b> Only free apps are included.</li>
+                        <li><b>Timing:</b> The app you are looking for may have been added after our data collection
+                            process.</li>
+                        <li><b>Compatibility:</b> The study was run on Android 7, so incompatible apps were dropped.
+                        </li>
+                    </ol>
+
                 </div>
             </mat-expansion-panel>
         </div>
 
         <div class="questiontype">
             <h2>Data Collection Purposes</h2>
-
             <mat-expansion-panel class="question-container">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="dropdown-header">
@@ -143,8 +267,17 @@
                 </mat-expansion-panel-header>
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p>
-                        To be added.
+                        Based on the identified data type, we use a supervised machine learning algorithm to predict the
+                        possibility for each candidate purpose and output the most likely one. Our testing results show
+                        that the algorithm can predict the data collection purpose with an average precision of 84%
+                        (among 19 unique categories). You can see more details in <a
+                            href="http://www.cs.cmu.edu/~mfredrik/papers/jin_ubicomp19.pdf">our paper</a>.
+
                     </p>
+                    <div
+                        style="display: flex; flex-direction:row; justify-content: center; width: min-content; height: min-content;">
+                        <img src="../../assets/FAQ4.png">
+                    </div>
                 </div>
             </mat-expansion-panel>
 
@@ -158,13 +291,181 @@
 
                 <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
                     <p></p>
+                    <ul>
+                        <li><b>Analytics:</b> A general ID could be used to avoid redundant device counting in
+                            marketing, and location and account data could be used for marketing analysis.</li>
+                        <li><b>Advertising:</b> Network data can be used for personalizing advertisements, and general
+                            ID could support ad targeting/evaluation.</li>
+                        <li><b>Interface customization:</b> Device information can be used to customize an interface
+                            based on the screen resolution.</li>
+                        <li><b>Anti-fraud activities:</b> Device information could be used to enforce limits on both
+                            free content and advertisement.</li>
+                        <li><b>Third-party login:</b> Account data could help a user log into a new app with their
+                            facebook or google account.</li>
+                        <li><b>Network optimization:</b> Network data could be used to download low resolution images
+                            when on LTE.</li>
+                    </ul>
                     <p>
-                        To be added.
+                        For researchers interested in our full purpose taxonomy, it is available on <a
+                            href="https://github.com/CMUChimpsLab/cmu_mobile_brandeis/blob/master/Purposes/CMU%20Final%20Purposes.pdf">github</a>
+                        as part of
+                        the CMU’s contribution to the <a href="https://www.darpa.mil/program/brandeis">Brandeis
+                            project</a>.
                     </p>
                 </div>
             </mat-expansion-panel>
 
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Can you explain more about “advertising” and “analytics” as purposes?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <p>
+                        Mobile advertisements can occur as text-based ads, banner advertisements, videos, which accounts
+                        for approximately two-thirds (65%) of 2018’s internet ad revenues. To tailor the advertisement
+                        for individual users, developers frequently collect users’ online/offline behavior data (e.g.,
+                        browsing history, GPS trajectory) and associate them with unique IDs stored in mobile devices.
+                    </p>
+                    <p>
+                        Collecting usage data for analytic purposes is another common practice in today’s software
+                        industry. Developers often collect various information, such as device models, user
+                        interactions, and device IDs, to monitor and track software bugs.
+                    </p>
+                </div>
+            </mat-expansion-panel>
+
+
         </div>
+
+        <div class="questiontype">
+            <h2>Miscellaneous</h2>
+
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Could this method be applied to more sensitive data, such as camera usage?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p>
+                        Yes. Although this study did not collect those data, data types such as microphone, camera, and
+                        contacts are in our research taxonomy. The next step would be replacing the UI monkeys with
+                        humans or more sophisticated bots and collecting more data.
+                    </p>
+
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Where can I learn more?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <ul>
+                        <li><b>Privacygrade.org:</b> This project was also built by our team at Carnegie Mellon
+                            University, and it shows how app permissions differ from user expectations. It is a partner
+                            website to Android Network Traces.</li>
+                        <li><b>AppBrain:</b> This <a href="https://www.appbrain.com/stats/libraries/ad-networks">list of
+                                top ad networks</a> shows common data destinations across a wider sample of apps.</li>
+                        <li><b>Crunchbase:</b> To learn more about which companies own the data destinations, check out
+                            Crunchbase. Here is an example link for DoubleClick, one of the most common websites that
+                            received app data in our study. </li>
+                    </ul>
+                    <p>
+                        For researchers interested in our full purpose taxonomy, it is available on <a
+                            href="https://github.com/CMUChimpsLab/cmu_mobile_brandeis/blob/master/Purposes/CMU%20Final%20Purposes.pdf">github</a>
+                        as part of
+                        the CMU’s contribution to the <a href="https://www.darpa.mil/program/brandeis">Brandeis
+                            project</a>.
+                    </p>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        Who funded this research?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <p>
+                        Most of the data on this website was collected as part of CMU researchers' contribution to the
+                        <a href="https://www.darpa.mil/program/brandeis">DARPA Brandeis project</a>. This material is
+                        based on research sponsored by Air Force Research Laboratory under agreement number
+                        FA8750-15-2-0281. The U.S. Government is authorized to reproduce and distribute reprints for
+                        Governmental purposes notwithstanding any copyright notation thereon. The views and conclusions
+                        contained herein are those of the authors and should not be interpreted as necessarily
+                        representing the official policies or endorsements, either expressed or implied, of Air Force
+                        Research Laboratory or the U.S. Government.
+                    </p>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="question-container">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="dropdown-header">
+                        What privacy-preserving steps can I take to share less data?
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+
+                <div class="dropdown-text" style="margin-top: 10px; padding-left: 25px;">
+                    <p></p>
+                    <ul>
+                        <li><b>Use airplane mode to stop sending data.</b>
+                            <p>At times when you’re not using your phone, enabling airplane mode (and turning off
+                                bluetooth and wifi), are great ways to cut your phone off from sending data.</p>
+                        </li>
+                        <li><b>Delete your advertising ID and opt out of personalized advertising</b>
+                            <p>An <b>advertising ID</b> is one form of “General ID data” that we collected, which is
+                                used simply for advertisers to track you. Google gives <a
+                                    href="https://support.google.com/googleplay/answer/3405269">directions for how to
+                                    reset this</a>.
+                                A screenshot is below.
+                            </p>
+                            <div>
+                                <img src="../../assets/FAQ5.png">
+                            </div>
+                        </li>
+                        <li><b>Remove apps whose data sharing makes you uncomfortable.</b>
+                            <p>If you find information here that makes you uncomfortable, removing the app is an option.
+                                To learn about apps that are outside the scope of this project, check out <a
+                                    href="http://privacygrade.org/">privacygrade.org</a> and <a
+                                    href="https://www.appcensus.io/">appcensus.io</a>. Other relevant tools outside the
+                                scope of Android apps are <a
+                                    href="https://explore.usableprivacy.org">https://explore.usableprivacy.org</a> and
+                                <a
+                                    href="https://www.macrumors.com/guide/ios-14-safari/">https://www.macrumors.com/guide/ios-14-safari/</a>.
+                            </p>
+                        </li>
+                        <li><b>Turn off your location in Android, and other sensitive permissions when those apps are
+                                not in use.</b>
+                            <p>Turning off your location limits apps’ ability to advertise to you based on location.
+                                Even if you occasionally want to turn on your location for mapping, turning it off the
+                                rest of the time limits unnecessary tracking. This can apply to other permissions too.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </mat-expansion-panel>
+
+
+        </div>
+
 
     </div>
 </div>
