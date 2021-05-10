@@ -44,7 +44,7 @@
     "highcharts-angular": "2.4.0",
     "jquery": "^3.5.1",
     "lite-server": "2.4.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mongodb": "3.2.3",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
