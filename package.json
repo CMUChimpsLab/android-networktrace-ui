@@ -62,7 +62,7 @@
     "@types/node": "~8.9.4",
     "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "~4.3.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "^3.1.6"
